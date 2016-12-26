@@ -1,0 +1,201 @@
+﻿
+@model pso.cdd.model.periodos
+<style type='text/css'>
+    label.error {
+        color: red;
+    }
+
+    .error {
+        color: #f0ad4e;
+    }
+
+    .formcolor {
+        background-color: #f5f5f5;
+    }
+
+    hr {
+        background-color: #dcdcdb;
+        height: 1.5px;
+        border: 0;
+        color: #f5f5f5;
+    }
+
+    #cabecera_tab1, #cabecera_tab2 {
+        color: black !important;
+    }
+</style>
+<div class="jarviswidget jarviswidget-color-orange jarviswidget-sortable form-horizontal">
+    <header role="heading">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            <span class="widget-icon"> <i class="fa fa-times"></i></span>
+        </button>
+        <span class="widget-icon"> <i class="fa fa-edit"></i></span>
+        <h2 id="myModalLabel">@(Model == null ? "Nuevo Periodo" : "Editar") </h2>
+    </header>
+
+    <!-- widget div-->
+    <div role="content">
+    @using (Html.BeginForm((Model == null ? "Create" : "Edit"), "periodo", FormMethod.Post, new { @id = "mant-form", @class = "smart-form", @novalidate = "novalidate" }))
+    {
+        @Html.AntiForgeryToken()
+        @(Model == null ? new MvcHtmlString("") : Html.HiddenFor(model => model.id_periodo))
+        @*@Html.HiddenFor(model => model)*@
+
+        <div class="widget-body form-horizontal">
+            <form id="smart-form" class="smart-form">
+                <header>
+                    <h2 class="table table-striped table-hover">Ingreso Periodo</h2>
+                </header>
+                <section class="form-group formcolor" style="padding:20px;">
+                    
+                    <div class="form-group">
+                        <label class="label col-lg-6">Tipo de Servicio</label>
+                        <label class="select col-lg-6">
+                            <i class="icon-append fa fa-cog"></i>
+                            @Html.DropDownListFor(model => model.id_tser, (SelectList)ViewBag.id_tser_list, "Seleccione...", new { @class = "" })
+                        </label>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label class="label col-lg-6">Fecha Inicio</label>
+                        <label class="input col-lg-6">
+                            <i class="icon-append fa fa-calendar"></i>
+                            @Html.TextBoxFor(model => model.fecha_ini, new { @class = "msk _fecha" })
+                        </label>
+                    </div>
+
+                    <br />
+                    <div class="form-group">
+                        <label class="label col-lg-6">Fecha fin</label>
+                        <label class="input col-lg-6">
+                            <i class="icon-append fa fa-calendar"></i>
+                            @Html.TextBoxFor(model => model.fecha_fin, new { @class = "msk _fecha" })
+                        </label>
+                    </div>
+
+                    
+
+                </section>
+                <footer>
+                    <div>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Cancelar
+                        </button>
+                        <button type="button" class="btn btn-warning" action="save">
+                            Grabar Registro
+                        </button>
+                    </div>
+                </footer>
+            </form>
+        </div>
+
+    }
+    </div>
+</div>
+
+
+
+<script>
+    var tipo = '@(Model == null ? "Create" : "Edit")';
+    pageSetUp();
+    setFormulario(
+        "mant-form",
+        {
+            fecha_ini: { required: true, 'date_dd-mm-yyyy': true },
+            fecha_fin: { required: true, 'date_dd-mm-yyyy': true },
+            id_tser:{ required: true}
+        },
+        {
+            fecha_ini: { required: '<span class="help-block error" ><i class="fa fa-warning"></i> Ingrese fecha inicio</span>', 'date_dd-mm-yyyy': 'Hola' },
+            fecha_fin: { required: '<span class="help-block error" ><i class="fa fa-warning"></i> Ingrese fecha fin</span>', 'date_dd-mm-yyyy': 'Hola' },
+            id_tser: { required: '<span class="help-block error" ><i class="fa fa-warning"></i> Ingrese un tipo de servicio</span>' }
+        }
+    );
+
+    $("#fecha_ini").datepicker(
+        {
+            dateFormat: 'dd-mm-yy',
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            currentText: 'present',
+            closeText: 'Cerrar',
+            showButtonPanel: true,
+            onSelect: function (date) {
+                $("#fecha_fin").datepicker("option", "minDate", new Date(moment(date, 'DD-MM-YYYY').format('YYYY/MM/DD')));
+            }
+        }
+    );
+
+
+    $("#fecha_fin").datepicker(
+        {
+            dateFormat: 'dd-mm-yy',
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            currentText: 'present',
+            closeText: 'Cerrar',
+            showButtonPanel: true
+        }
+    );
+
+
+    $("#fecha_ini").change(function () {
+        var var1 = $(this).val().split('-');
+        $("#fecha_fin").datepicker("option", "minDate", new Date(var1[1] + '-' + var1[0] + '-' + var1[2]));
+        $("#fecha_fin").attr('data-val-dateIni', var1[1] + '-' + var1[0] + '-' + var1[2]);
+    });
+
+    $("#fecha_fin").change(function () {
+        var var1 = $(this).val().split('-');
+        $("#fecha_ini").datepicker("option", "maxDate", new Date(var1[1] + '-' + var1[0] + '-' + var1[2]));
+        $("#fecha_ini").attr('data-val-dateFin', var1[1] + '-' + var1[0] + '-' + var1[2]);
+    });
+
+
+    function inicializaFormulario() {
+        if (tipo == 'Edit') {
+            $("#id_tser").attr('disabled', true);
+            $("#fecha_ini").attr('disabled', true);
+            $("#fecha_ini").attr('data-val-dateIni', '');
+            
+        } else {
+            $("#id_tser").removeAttr('disabled');
+            $("#fecha_ini").removeAttr('disabled');
+        }
+    }
+
+    inicializaFormulario();
+
+
+    $("#id_tser").change(changeEmpTSer);
+
+    function changeEmpTSer() {
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetFechas", "Periodo")',
+            dataType: 'json',
+            data: {
+                id_tser: $("#id_tser").val()
+            },
+            success: function (result) {
+
+                $.each(result, function (i, item) {
+                    if (item.rank_ == 1) {
+                        console.log(item.id_tser + ' n ' + item.rank_);
+                        $("#fecha_ini").datepicker("option", "minDate", new Date(item.fecha_fin));
+                        $("#fecha_ini").attr('data-val-dateIni', item.fecha_fin);
+                    }
+                });
+
+            },
+            error: function (ex) {
+                alert('Failed to retrieve states.' + ex);
+            }
+        });
+    }
+
+
+</script>

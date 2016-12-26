@@ -1,0 +1,5 @@
+﻿@model ModelStateDictionary
+@*//alert-dismissible*@
+<div id="modalError" class="alert alert-danger " role="alert" style="margin-top: 5px; @(Model.IsValid?"display:none;":"")">
+    @Html.ValidationSummary(false, "Error Validando Datos.")
+</div>

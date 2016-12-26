@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f4514c049b8944aba80edf94bcfe2cd8" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="TSModel.avisos" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="TSModel.cargos" Width="1.5" PointX="0.75" PointY="5.875" />
+        <EntityTypeShape EntityType="TSModel.categorias" Width="1.5" PointX="1.5" PointY="0.75" />
+        <EntityTypeShape EntityType="TSModel.empresas" Width="1.5" PointX="3.75" PointY="14.5" />
+        <EntityTypeShape EntityType="TSModel.periodos" Width="1.5" PointX="8.25" PointY="0.75" />
+        <EntityTypeShape EntityType="TSModel.sysdiagrams" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="TSModel.tipos_servicios" Width="1.5" PointX="6" PointY="1.75" />
+        <EntityTypeShape EntityType="TSModel.unidades" Width="1.5" PointX="3.75" PointY="0.875" />
+        <EntityTypeShape EntityType="TSModel.usuarios" Width="1.5" PointX="3" PointY="5.125" />
+        <AssociationConnector Association="TSModel.FK_usuarios_cargos" />
+        <AssociationConnector Association="TSModel.FK_categorias_unidades" />
+        <AssociationConnector Association="TSModel.FK_periodos_tipos_servicios" />
+        <AssociationConnector Association="TSModel.FK_usuarios_unidades" />
+        <AssociationConnector Association="TSModel.unidadesxcategoria" />
+        <EntityTypeShape EntityType="TSModel.valor_hh" Width="1.5" PointX="6" PointY="7.5" />
+        <AssociationConnector Association="TSModel.FK_valor_hh_cargos" />
+        <AssociationConnector Association="TSModel.FK_valor_hh_empresas" />
+        <AssociationConnector Association="TSModel.FK_valor_hh_unidades" />
+        <EntityTypeShape EntityType="TSModel.perfil_usuario" Width="1.5" PointX="5.875" PointY="12.25" />
+        <AssociationConnector Association="TSModel.FK_perfil_usuario_usuarios" />
+        <EntityTypeShape EntityType="TSModel.emp_car_tsrv" Width="1.5" PointX="8.25" PointY="10.875" />
+        <AssociationConnector Association="TSModel.FK_emp_car_tsrv_categorias" />
+        <AssociationConnector Association="TSModel.FK_emp_car_tsrv_empresas" />
+        <AssociationConnector Association="TSModel.FK_emp_car_tsrv_tipos_servicios" />
+        <EntityTypeShape EntityType="TSModel.parametros" Width="1.5" PointX="14.75" PointY="4.875" />
+        <AssociationConnector Association="TSModel.FK_perfil_usuario_parametros" />
+        <EntityTypeShape EntityType="TSModel.cab_ts" Width="1.5" PointX="10.25" PointY="4.5" IsExpanded="true" />
+        <AssociationConnector Association="TSModel.FK_cab_ts_categorias" />
+        <AssociationConnector Association="TSModel.FK_cab_ts_empresas" />
+        <AssociationConnector Association="TSModel.FK_cab_ts_tipos_servicios" />
+        <AssociationConnector Association="TSModel.FK_cab_ts_usuarios" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

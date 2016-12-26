@@ -1,0 +1,343 @@
+﻿
+@model List<Dictionary<string, object>>
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    .morris-hover{position:absolute;z-index:1000;}.morris-hover.morris-default-style{border-radius:10px;padding:6px;color:#666;background:rgba(255, 255, 255, 0.8);border:solid 2px rgba(230, 230, 230, 0.8);font-family:sans-serif;font-size:12px;text-align:center;}.morris-hover.morris-default-style .morris-hover-row-label{font-weight:bold;margin:0.25em 0;}
+.morris-hover.morris-default-style .morris-hover-point{white-space:nowrap;margin:0.1em 0;}
+  .formcolor {
+        background-color: #f5f5f5;
+    }
+</style>
+
+<div class="smart-form table form-horizontal table-striped table-hover">
+    <div class="form-group formcolor">
+        <section class="col col-lg-2 col-sm-2">
+            <label class="label">Fecha Inicio</label>
+            <label class="input">
+                <i class="icon-append fa fa-calendar"></i>
+                <input type="text" class="msk _fecha" id="fecha_inicio" name="fecha_inicio" />
+            </label>
+        </section>
+        <section class="col col-lg-2 col-sm-2">
+            <label class="label">Fecha Fin</label>
+            <label class="input">
+                <i class="icon-append fa fa-calendar"></i>
+                <input type="text" class="msk _fecha" id="fecha_fin" name="fecha_fin" />
+            </label>
+        </section>
+        <section class="col col-lg-2 col-sm-2">
+            <label class="label">Agrupar por...</label>
+            <label class="select">
+                <i class="icon-append fa fa-cog"></i>
+                <select id="group_by2" name="group_by2" class="input_select">
+                    <option>No Agrupar</option>
+                    <option value="U" selected>Usuarios</option>
+                    <option value="E">Clientes</option>
+                    <option value="C">Categorias</option>
+                </select>
+            </label>
+        </section>
+        <section class="col col-lg-2 col-sm-3">
+            <label class="label">Agrupar por Tipo de Servicio</label>
+            <label class="select">
+                <i class="icon-append fa fa-cog"></i>
+                <select id="group_by1" name="group_by1" class="input_select">
+                    <option value="S" selected>Si</option>
+                    <option value="N">No</option>
+                </select>
+            </label>
+        </section>
+        <section class="col col-lg-2 col-sm-3">
+            <label class="label">Ordenar por Tipo de Servicio</label>
+            <label class="select">
+                <i class="icon-append fa fa-cog"></i>
+                <select id="order_by" name="order_by" class="input_select">
+                    <option value="S" selected>Si</option>
+                    <option value="N">No</option>
+                </select>
+            </label>
+        </section>
+
+        <section class="col col-lg-2 col-sm-3">
+            <label class="label">Filtrar por Estados...</label>
+            <label class="select">
+                <i class="icon-append fa fa-cog"></i>
+                <select multiple id="filter_state_by" name="filter_state_by" class="" style="height:105px;">
+                    <option value="ANALI" selected>Ingresados</option>
+                    <option value="REVI1" selected>Supervisor</option>
+                    <option value="REVI2" selected>Gerente</option>
+                    <option value="REVI3" selected>Traducción</option>
+                    <option value="REVI4" selected>Facturación</option>
+                </select>
+            </label>
+        </section>
+        
+    </div>
+</div>
+
+
+
+<hr />
+<table id="dt_basic" class="table table-striped table-bordered table-hover table-responsive" width="100%" role="grid" aria-describedby="datatable_col_reorder_info" style="width: 100%;">
+    <caption>Reporte Simulado</caption>
+    <thead>
+        <tr>
+            <th class="visible">Tipo Servicio</th>
+            <th class="visible" data-class="expand">Usuarios</th>
+            <th>Cantidad de Registros</th>
+            <th data-hide="phone,tablet">Suma de Horas</th>
+            <th data-hide="phone,tablet">Suma de Horas Comerciales</th>
+            <th data-hide="phone,tablet">Total UF</th>
+        </tr>
+
+    </thead>
+    <tfoot>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </tfoot>
+
+    <tbody></tbody>
+</table>
+<div class="smart-form table form-horizontal table-striped table-hover">
+    <div class="form-group formcolor">
+        <section class="col col-lg-2 col-sm-3">
+            <label class="label">Grafico eje Y</label>
+            <label class="select">
+                <i class="icon-append fa fa-cog"></i>
+                <select id="y_axys" name="y_axys" class="input_select">
+                    <option value="C">Cantidad de Registros</option>
+                    <option value="HH" selected>Suma de Horas</option>
+                    <option value="HHC">Suma de Horas Comerciales</option>
+                    <option value="UF">Total UF</option>
+                </select>
+            </label>
+        </section>
+    </div>
+</div>
+<div id="grafico" class="container-fluid" width="100%"></div>
+
+
+<script type="text/javascript">
+    pageSetUp();
+
+    var responseAjax;
+
+    $("#fecha_fin").val(moment().subtract(1, 'days').format('DD-MM-YYYY'));
+
+    $("#fecha_inicio").val(moment().subtract(8, 'days').format('DD-MM-YYYY'));
+
+    var dataColumns = [
+                { data: "id_tser" },
+                { data: "grupo" },
+                { data: "cantidad_registros" },
+                { data: "suma_horas" },
+                { data: "suma_horas_comerciales" },
+                { data: "total_uf" }
+    ];
+
+    var oTable = InicializaGrillaFiltroAjax("dt_basic", "@Url.Action("getReporteSemanal", "Reportes")", parameterFunction, dataColumns, cargaData);
+
+
+    $('#group_by2').change(function () {
+        validationAndReload();
+    });
+
+    $('#group_by1').change(function () {
+        validationAndReload();
+    });
+
+    $('#order_by').change(function () {
+        validationAndReload();
+    });
+
+    $("#fecha_fin").change(function () {
+        validationAndReload();
+    });
+
+    $("#fecha_inicio").change(function () {
+        validationAndReload();
+    });
+
+    $("#y_axys").change(function () {
+        validationAndReload();
+    });
+
+    $("#filter_state_by").change(function () {
+        validationAndReload();
+    });
+    
+
+
+    function validationAndReload() {
+        if (moment('It is ' + $("#fecha_inicio").val(), 'DD-MM-YYYY').isValid() && moment('It is ' + $("#fecha_fin").val(), 'DD-MM-YYYY').isValid()) {
+            oTable.ajax.reload();
+        } else {
+            mensajeError("Error de validación", "Formato de Fechas Incorrectas")
+        }
+    }
+    function parameterFunction(d) {
+        var fecha_ini = $('#fecha_inicio').val().split('-');
+        var fecha_fin = $('#fecha_fin').val().split('-');
+
+        return $.extend({}, d, {
+            "order_by": $('#order_by').val(),
+            "group_by1": $('#group_by1').val(),
+            "group_by2": $('#group_by2').val(),
+            "fecha_inicio": '' + fecha_ini[2] + '-' + fecha_ini[1] + '-' + fecha_ini[0],
+            "fecha_fin": '' + fecha_fin[2] + '-' + fecha_fin[1] + '-' + fecha_fin[0],
+            "filtro_estados": $('#filter_state_by').val()
+        });
+    }
+
+    loadScript("js/plugin/masked-input/jquery.mask.js", function () {
+        $("._fecha.msk").mask("99-99-9999", { placeholder: "dd-mm-aaaa" });
+    });
+
+    $('#fecha_inicio').datepicker({
+        dateFormat: 'dd-mm-yy',
+        prevText: '<i class="fa fa-chevron-left"></i>',
+        nextText: '<i class="fa fa-chevron-right"></i>'
+    });
+
+    $('#fecha_fin').datepicker({
+        dateFormat: 'dd-mm-yy',
+        prevText: '<i class="fa fa-chevron-left"></i>',
+        nextText: '<i class="fa fa-chevron-right"></i>'
+    });
+
+
+    function cargaData(array) {
+        var ajaxRetorno = JSON.parse(JSON.stringify(array.data));
+        var result = $.grep(array.data, function (n) { return (n.id_tser.trim() == 'Todos'); });
+        var array2 = [];
+        var labels = ['Servicios No Recurrentes', 'Servicios Recurrentes', 'Internos'];
+        var ykeys = ['SNR', 'SR', 'INT'];
+        var colores = ["#4da74d", "#0b62a4", "#7a92a3", "#e47f38"];
+        var y_axys = $("#y_axys").val();
+        if (result.length == 0) {
+            $.each(array.data, function (i, item) {
+                if (item.grupo != '***') {
+                    var arrtemp = $.grep(array.data, function (n, i) {
+                        return (n.grupo == item.grupo);
+                    });
+                    var SNR_ = 0;
+                    var SR_ = 0;
+                    var INT_ = 0;
+
+
+                    var y_ = arrtemp[0].grupo;
+                    try {
+                        var SNRarr = $.grep(arrtemp, function (n) { return (n.id_tser.trim() == 'SNR'); });
+
+                        switch (y_axys) {
+                            case 'C':
+                                SNR_ = SNRarr[0].cantidad_registros;
+                                break;
+                            case 'HH':
+                                SNR_ = SNRarr[0].suma_horas;
+                                break;
+                            case 'HHC':
+                                SNR_ = SNRarr[0].suma_horas_comerciales;
+                                break;
+                            case 'UF':
+                                SNR_ = SNRarr[0].total_uf;
+                                break;
+                            default:
+                                SNR_ = SNRarr[0].suma_horas;
+                        }
+                    } catch (err) { }
+                    try {
+                        var SRarr = $.grep(arrtemp, function (n) { return (n.id_tser.trim() == 'SR'); });
+                        switch (y_axys) {
+                            case 'C':
+                                SR_ = SRarr[0].cantidad_registros;
+                                break;
+                            case 'HH':
+                                SR_ = SRarr[0].suma_horas;
+                                break;
+                            case 'HHC':
+                                SR_ = SRarr[0].suma_horas_comerciales;
+                                break;
+                            case 'UF':
+                                SR_ = SRarr[0].total_uf;
+                                break;
+                            default:
+                                SR_ = SRarr[0].suma_horas;
+                        }
+                    } catch (err) { }
+                    try {
+                        var INTarr = $.grep(arrtemp, function (n) { return (n.id_tser.trim() == 'INT'); });
+                        switch (y_axys) {
+                            case 'C':
+                                INT_ = INTarr[0].cantidad_registros;
+                                break;
+                            case 'HH':
+                                INT_ = INTarr[0].suma_horas;
+                                break;
+                            case 'HHC':
+                                INT_ = INTarr[0].suma_horas_comerciales;
+                                break;
+                            case 'UF':
+                                INT_ = INTarr[0].total_uf;
+                                break;
+                            default:
+                                INT_ = INTarr[0].suma_horas;
+                        }
+                    } catch (err) { }
+                    array2.push({ y: y_, SNR: SNR_, SR: SR_, INT: INT_ });
+
+
+                    $.each(array.data, function (i, item) {
+                        if (item.grupo == y_) {
+                            array.data[i].grupo = '***';
+                        }
+                    });
+                }
+            });
+        } else {
+            labels = ['Todos los Servicios'];
+            ykeys = ['Todos'];
+            colores = ["#e47f38"];
+            $.each(array.data, function (i, item) {
+
+                var Todos_;
+                switch (y_axys) {
+                    case 'C':
+                        Todos_ = item.cantidad_registros;
+                        break;
+                    case 'HH':
+                        Todos_ = item.suma_horas;
+                        break;
+                    case 'HHC':
+                        Todos_ = item.suma_horas_comerciales;
+                        break;
+                    case 'UF':
+                        Todos_ = item.total_uf;
+                        break;
+                    default:
+                        Todos_ = item.suma_horas;
+                }
+                var y_ = item.grupo;
+                array2.push({ y: y_, Todos: Todos_ });
+            });
+
+        }
+
+
+        morrisChartBar('grafico', array2, ykeys, labels, colores);
+        return ajaxRetorno;
+    }
+
+
+
+</script>
+

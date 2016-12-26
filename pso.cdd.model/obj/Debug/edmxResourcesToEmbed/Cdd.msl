@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TSModelStoreContainer" CdmEntityContainer="TSEntities">
+    <EntitySetMapping Name="avisos">
+      <EntityTypeMapping TypeName="TSModel.avisos">
+        <MappingFragment StoreEntitySet="avisos">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="usuario_mod" ColumnName="usuario_mod" />
+          <ScalarProperty Name="fecha_mod" ColumnName="fecha_mod" />
+          <ScalarProperty Name="tipo_aviso" ColumnName="tipo_aviso" />
+          <ScalarProperty Name="msg" ColumnName="msg" />
+          <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+          <ScalarProperty Name="fecha_ini" ColumnName="fecha_ini" />
+          <ScalarProperty Name="id_aviso" ColumnName="id_aviso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cargos">
+      <EntityTypeMapping TypeName="TSModel.cargos">
+        <MappingFragment StoreEntitySet="cargos">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="usuario_mod" ColumnName="usuario_mod" />
+          <ScalarProperty Name="fecha_mod" ColumnName="fecha_mod" />
+          <ScalarProperty Name="nom_cargo" ColumnName="nom_cargo" />
+          <ScalarProperty Name="id_cargo" ColumnName="id_cargo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="categorias">
+      <EntityTypeMapping TypeName="TSModel.categorias">
+        <MappingFragment StoreEntitySet="categorias">
+          <ScalarProperty Name="id_unidad" ColumnName="id_unidad" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="usuario_mod" ColumnName="usuario_mod" />
+          <ScalarProperty Name="fecha_mod" ColumnName="fecha_mod" />
+          <ScalarProperty Name="nom_cat" ColumnName="nom_cat" />
+          <ScalarProperty Name="id_cat" ColumnName="id_cat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="empresas">
+      <EntityTypeMapping TypeName="TSModel.empresas">
+        <MappingFragment StoreEntitySet="empresas">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="usuario_mod" ColumnName="usuario_mod" />
+          <ScalarProperty Name="fecha_mod" ColumnName="fecha_mod" />
+          <ScalarProperty Name="nomc_emp" ColumnName="nomc_emp" />
+          <ScalarProperty Name="nom_emp" ColumnName="nom_emp" />
+          <ScalarProperty Name="id_emp" ColumnName="id_emp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="periodos">
+      <EntityTypeMapping TypeName="TSModel.periodos">
+        <MappingFragment StoreEntitySet="periodos">
+          <ScalarProperty Name="usuario_mod" ColumnName="usuario_mod" />
+          <ScalarProperty Name="fecha_mod" ColumnName="fecha_mod" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+          <ScalarProperty Name="fecha_ini" ColumnName="fecha_ini" />
+          <ScalarProperty Name="id_tser" ColumnName="id_tser" />
+          <ScalarProperty Name="id_periodo" ColumnName="id_periodo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="TSModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipos_servicios">
+      <EntityTypeMapping TypeName="TSModel.tipos_servicios">
+        <MappingFragment StoreEntitySet="tipos_servicios">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="usuario_mod" ColumnName="usuario_mod" />
+          <ScalarProperty Name="fecha_mod" ColumnName="fecha_mod" />
+          <ScalarProperty Name="nom_tser" ColumnName="nom_tser" />
+          <ScalarProperty Name="id_tser" ColumnName="id_tser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="unidades">
+      <EntityTypeMapping TypeName="TSModel.unidades">
+        <MappingFragment StoreEntitySet="unidades">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="usuario_mod" ColumnName="usuario_mod" />
+          <ScalarProperty Name="fecha_mod" ColumnName="fecha_mod" />
+          <ScalarProperty Name="nom_unidad" ColumnName="nom_unidad" />
+          <ScalarProperty Name="id_unidad" ColumnName="id_unidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuarios">
+      <EntityTypeMapping TypeName="TSModel.usuarios">
+        <MappingFragment StoreEntitySet="usuarios">
+          <ScalarProperty Name="jerarquia" ColumnName="jerarquia" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="usuario_mod" ColumnName="usuario_mod" />
+          <ScalarProperty Name="fecha_mod" ColumnName="fecha_mod" />
+          <ScalarProperty Name="id_unidad" ColumnName="id_unidad" />
+          <ScalarProperty Name="id_cargo" ColumnName="id_cargo" />
+          <ScalarProperty Name="jefatura" ColumnName="jefatura" />
+          <ScalarProperty Name="pass_usu" ColumnName="pass_usu" />
+          <ScalarProperty Name="Nom_cor_usu" ColumnName="Nom_cor_usu" />
+          <ScalarProperty Name="Nom_usu" ColumnName="Nom_usu" />
+          <ScalarProperty Name="id_usu" ColumnName="id_usu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="unidadesxcategoria" TypeName="TSModel.unidadesxcategoria" StoreEntitySet="unidadesxcategoria">
+      <EndProperty Name="unidades">
+        <ScalarProperty Name="id_unidad" ColumnName="id_unidad" />
+      </EndProperty>
+      <EndProperty Name="categorias">
+        <ScalarProperty Name="id_cat" ColumnName="id_cat" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="valor_hh">
+      <EntityTypeMapping TypeName="TSModel.valor_hh">
+        <MappingFragment StoreEntitySet="valor_hh">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="usuario_mod" ColumnName="usuario_mod" />
+          <ScalarProperty Name="fecha_mod" ColumnName="fecha_mod" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="id_cargo" ColumnName="id_cargo" />
+          <ScalarProperty Name="id_unidad" ColumnName="id_unidad" />
+          <ScalarProperty Name="id_emp" ColumnName="id_emp" />
+          <ScalarProperty Name="id_valor" ColumnName="id_valor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="perfil_usuario">
+      <EntityTypeMapping TypeName="TSModel.perfil_usuario">
+        <MappingFragment StoreEntitySet="perfil_usuario">
+          <ScalarProperty Name="perfil" ColumnName="perfil" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="emp_car_tsrv">
+      <EntityTypeMapping TypeName="TSModel.emp_car_tsrv">
+        <MappingFragment StoreEntitySet="emp_car_tsrv">
+          <ScalarProperty Name="id_tser" ColumnName="id_tser" />
+          <ScalarProperty Name="id_cat" ColumnName="id_cat" />
+          <ScalarProperty Name="id_emp" ColumnName="id_emp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="parametros">
+      <EntityTypeMapping TypeName="TSModel.parametros">
+        <MappingFragment StoreEntitySet="parametros">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="usuario_mod" ColumnName="usuario_mod" />
+          <ScalarProperty Name="fecha_mod" ColumnName="fecha_mod" />
+          <ScalarProperty Name="orden" ColumnName="orden" />
+          <ScalarProperty Name="texto" ColumnName="texto" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="detalle" ColumnName="detalle" />
+          <ScalarProperty Name="grupo" ColumnName="grupo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cab_ts">
+      <EntityTypeMapping TypeName="TSModel.cab_ts">
+        <MappingFragment StoreEntitySet="cab_ts">
+          <ScalarProperty Name="horas_comerciales" ColumnName="horas_comerciales" />
+          <ScalarProperty Name="valor_hh" ColumnName="valor_hh" />
+          <ScalarProperty Name="dueño_grupo" ColumnName="dueño_grupo" />
+          <ScalarProperty Name="grupo" ColumnName="grupo" />
+          <ScalarProperty Name="id_tser" ColumnName="id_tser" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="usuario_mod" ColumnName="usuario_mod" />
+          <ScalarProperty Name="fecha_mod" ColumnName="fecha_mod" />
+          <ScalarProperty Name="descr_ing" ColumnName="descr_ing" />
+          <ScalarProperty Name="descr_esp" ColumnName="descr_esp" />
+          <ScalarProperty Name="descuento" ColumnName="descuento" />
+          <ScalarProperty Name="horas" ColumnName="horas" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="id_cat" ColumnName="id_cat" />
+          <ScalarProperty Name="id_emp" ColumnName="id_emp" />
+          <ScalarProperty Name="id_usu" ColumnName="id_usu" />
+          <ScalarProperty Name="ts_id" ColumnName="ts_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

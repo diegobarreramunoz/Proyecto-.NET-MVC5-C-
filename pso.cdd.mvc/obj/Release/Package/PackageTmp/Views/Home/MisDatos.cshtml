@@ -1,0 +1,116 @@
+﻿@model pso.cdd.model.usuarios
+        
+<h1><i class="fa fa-lg fa-fw fa-User"></i> Datos de Usuario</h1>
+
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-8 col-lg-offset-2">
+        <div class="well well-light well-sm no-margin">
+
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div id="myCarousel" class="carousel fade profile-carousel">
+                        <div class="air air-bottom-right padding-10"> 
+                            <a href="@Url.Action("Logout", "Home")" class="btn txt-color-white bg-color-pinkDark btn-sm"><i class="fa fa-sign-out"></i> Cerrar Sesión</a>
+                        </div>
+                        <div class="air air-top-left padding-10">
+                            <h4 class="txt-color-black font-md">@string.Format("{0:MMMM, d 'de' yyyy}", Model.fecha_mod)</h4>
+                        </div>
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li> 
+                        </ol>
+                        <div class="carousel-inner">
+                            <!-- Slide 1 -->
+                            <div class="item active">
+                                <img src="~/img/pattern/paper.png" alt="" style="width: 100%;">
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-3 profile-pic">
+                            <img src="~/img/avatars/male.png"/> 
+                        </div>
+                        <div class="col-sm-6">
+                            <h1>@Model.Nom_usu
+                                <br/>
+                                <small>@(Model.id_unidad == null ? "N/D" : Model.unidades.nom_unidad)</small>
+                            </h1>
+
+                            <ul class="list-unstyled">
+                                <li>
+                                    <p class="text-muted">
+                                        <i class="fa fa-info"></i>&nbsp;&nbsp;@Model.Nom_usu.ToString()
+                                    </p>
+                                </li>
+                                <li>
+                                    <p class="text-muted">
+                                        <i class="fa fa-home"></i>&nbsp;&nbsp;@(Model.id_cargo.ToString() ==null ? "N/A" : Model.cargos.nom_cargo)
+                                    </p>
+                                </li>
+                                <li>
+                                    <p class="text-muted">
+                                        @*<i class="fa fa-building"></i>&nbsp;&nbsp;@(Model.Distrito==null ? "N/A" : Model.Distrito.Nombre)*@
+                                    </p>
+                                </li>                           
+                            </ul>
+                            <br/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <hr>
+                    <div class="padding-10">
+
+                        <ul class="nav nav-tabs tabs-pull-right">
+                            <li class="active">
+                                <a href="#a1" data-toggle="tab">Últimos registros</a>
+                            </li> 
+                            <li class="pull-left">
+                                <span class="margin-top-10 display-inline"><i class="fa fa-rss text-success"></i> Actividad</span>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content padding-top-10">
+                            <div  class="tab-pane fade in active" id="a1">
+                                <table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo Servicio</th>
+                                            <th>Empresa</th>
+                                            <th>Horas</th>
+                                            <th>Fecha</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ( var id in ViewBag.listaCab_ts) {
+                                            <tr>
+                                                <td>@id.tipos_servicios.nom_tser</td>
+                                                <td>@id.empresas.nom_emp</td>
+                                                <td>@id.horas</td>
+                                                <td>@id.fecha</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+        pageSetUp();
+        GrillaConsulta("dt_basic");
+</script>

@@ -1,0 +1,215 @@
+﻿
+@model List<Dictionary<string,object>>
+<style>
+    .placeholder {
+        font-size: 12px;
+        padding: 2px;
+    }
+</style>
+
+<!---------------------------------------Tabla Responsiva------------------------------------------------------------------>
+<!--   Se crea Dictionary para estados -->
+@{
+    Dictionary<string, string> estados = new Dictionary<string, string>();
+    estados.Add("ANALI", "<span class='center-block padding-5 label label-info'>Ingresado</span>");
+    estados.Add("REVI1", "<span class='center-block padding-5 label label-danger'>Supervisor</span>");
+    estados.Add("REVI2", "<span class='center-block padding-5 label label-success'>Gerente</span>");
+    estados.Add("REVI3", "<span class='center-block padding-5 label label-default'></span>");
+    estados.Add("REVI4", "<span class='center-block padding-5 label label-warning'></span>");
+    estados.Add("REVI5", "<span class='center-block padding-5 label label-info'></span>");
+
+}
+
+
+    <table id="" class="table table-striped  table-hover" width="100%">
+        <thead>
+            <tr><th><a href="@Url.Action("Create","RevisionSinPeriodo")" data-toggle="modal" data-target="#remoteModal" class="btn btn-warning btn-sm">Ingresar Horas</a></th></tr>
+        </thead>
+    </table>
+
+    <div class="smart-form">
+        <label class="checkbox">
+            <input type="checkbox" id="multiple">
+            <i></i>Multiple Selección
+        </label>
+    </div>
+
+
+    @using (Html.BeginForm("Create", "IngresoHoras", FormMethod.Post, new { @id = "list-form" }))
+    {
+        <table id="dt_basic" class="table table-striped table-bordered table-hover table-responsive" cellspacing="10" width="100%">
+            <thead>
+                <tr>
+                    @*<th class="nosort">*@
+                    <th>
+
+                        <div id="todos_cabecera" class="smart-form" style="display:none;">
+                            <label class="checkbox">
+                                <input type="checkbox" id="todos_check_cabecera">
+                                <i></i><span class="visible" style="font-size:15px; padding-left:25px;">Todos</span>
+                            </label>
+                        </div>
+                    </th>
+                    <th data-hide="phone,tablet" class="visible">Nombre Usuario Ingresa</th>
+                    <th data-hide="phone,tablet" class="visible">Nombre Cliente</th>
+                    <th data-class="expand">Nombre Categoria</th>
+                    <th data-hide="phone,tablet">Fecha</th>
+                    <th data-hide="phone,tablet">Tarifas</th>
+                    <th data-hide="phone,tablet">Horas</th>
+                    <th data-hide="phone,tablet">SubTotal</th>
+                    <th data-hide="phone,tablet">Descuento</th>
+                    <th data-hide="phone,tablet">Total</th>
+                    <th data-hide="phone,tablet">Descripción Esp.</th>
+                    <th data-hide="phone,tablet">Estado</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th style="min-width:90px;">
+
+                        <div id="todos_cabecera" class="smart-form" style="display:none;">
+                            <label class="checkbox">
+                                <input type="checkbox" id="todos_check_cabecera">
+                                <i></i>Todos
+                            </label>
+                        </div>
+                    </th>
+                    <th>Nombre Usuario Ingresa</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </tfoot>
+
+
+            <tbody>
+                @{int i = 0;}
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="buttone placeholder">
+                            @{ if (((string)ViewBag.jerarquia).Equals("REVI2") && item["estado"].Equals("ANALI"))
+                                {
+
+                                }
+                                else
+                                {
+                                    <div id="todo_content" class="form-group">
+
+                                        <div class="1todos smart-form" style="display:none; margin-right:10px;">
+                                            <label class="checkbox">
+                                                <input type="checkbox" id="todos_check_@i" value="@item["ts_id"]" class="_formulario">
+                                                <i></i>
+                                            </label>
+                                        </div>
+                                        <div class="2todos" style="display:inline-block;">
+                                            <button type="button" class="btn btn-xs btn-default" msg-confirma="Desea Aprobar este Registro" onclick="confirmaElimina(this, '@Url.Action("Aprove", new { id_string = item["ts_id"] })');"><i class="glyphicon glyphicon-check"></i></button>
+
+
+                                            <button type="button" class="btn btn-xs btn-default" href="@Url.Action("Edit", new { id = item["ts_id"] })" data-toggle="modal" data-target="#remoteModal"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="btn btn-xs btn-default" msg-confirma="Seguro que desea eliminar este Registro" onclick="confirmaElimina(this, '@Url.Action("Delete", new { id = item["ts_id"] })');"><i class="fa fa-trash-o"></i></button>
+                                        </div>
+                                    </div>
+
+                                }
+                            }
+                        </td>
+                        <td class="placeholder">@Html.DisplayFor(modelItem => item["Nom_usu"])</td>
+                        <td class="placeholder">@Html.DisplayFor(modelItem => item["nom_emp"])</td>
+                        <td class="placeholder">@Html.DisplayFor(modelItem => item["nom_cat"])</td>
+                        <td class="placeholder">@{ string fecha = ((DateTime)item["fecha"]).ToString("dd-MMM-yy");}@Html.DisplayFor(modelItem => fecha)</td>
+                        <td class="placeholder">@Html.DisplayFor(modelItem => item["valor_hh"])</td>
+                        <td class="placeholder">@{Decimal var = Decimal.Round((Decimal.Parse(item["horas_comerciales"].ToString()) / 60), 2);  } @Html.DisplayFor(modelItem => var)</td>
+                        <td>@Html.DisplayFor(modelItem => item["sub_total"])</td>
+                        <td>@Html.DisplayFor(modelItem => item["descuento"])</td>
+                        <td>@Html.DisplayFor(modelItem => item["total"])</td>
+                        <td class="placeholder"><textarea class="descripcion">@Html.DisplayFor(modelItem => item["descr_esp"])</textarea></td>
+                        <td>@Html.Raw(estados[item["estado"].ToString()])</td>
+                    </tr>
+                                i++;
+                            }
+            </tbody>
+        </table>
+        <button id="apr_registros" type="button" class="btn btn-warning" msg-confirma="Desea Aprobar este Registro" onclick="btnAprueba();" style="display:none;">Aprobar Registros</button>
+                            }
+
+    
+
+
+   <script>
+
+       
+       pageSetUp();
+
+
+
+       activaModal();
+
+       var jerar = '@ViewBag.jerarquia';
+
+
+       function tipos_estados() {
+           //
+           if (jerar == 'REVI3' || jerar == 'REVI1') {
+               $("#ingresar").hide();
+           }
+       }
+
+
+       tipos_estados();
+
+
+
+        ver_markdown("descripcion");
+        var otable123 = InicializaGrillaFiltro("dt_basic");
+
+        $('#multiple').change(function () {
+            if ($(this).prop('checked') == true) {
+                $('#todos_cabecera').show();
+                $('#apr_registros').show();
+                otable123.cells('.buttone').every(function (index) {
+                    var node = $(this.node());
+                    node.find('.1todos').css("display", "inline-block");
+                    node.find('.2todos').css("display", "none");
+                });
+            } else {
+                $('#todos_cabecera').hide();
+                $('#apr_registros').hide();
+                otable123.cells('.buttone').every(function (index) {
+                    var node = $(this.node());
+                    node.find('.1todos').css("display", "none");
+                    node.find('.2todos').css("display", "inline-block");
+                });
+            }
+        });
+        $('#todos_check_cabecera').change(function () {
+            if ($(this).prop('checked') == true) {
+                $('.1todos>label>input').prop('checked', true);
+            } else {
+                $('.1todos>label>input').prop('checked', false);
+            }
+        })
+
+
+       function btnAprueba() {
+           var objetos = [];
+           var x = 0;
+           $('#list-form input._formulario').each(function () {
+               if ($(this).prop('checked') == true) {
+                   objetos[x] = $(this).val();
+                   x++;
+               }
+           });
+
+           confirmaAprobacion('@Url.Action("Aprove")', { 'ids_string': objetos });
+
+
+       }
+    </script>

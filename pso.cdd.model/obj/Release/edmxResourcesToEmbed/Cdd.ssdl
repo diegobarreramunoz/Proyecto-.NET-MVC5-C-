@@ -1,0 +1,489 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="avisos">
+    <Key>
+      <PropertyRef Name="id_aviso" />
+    </Key>
+    <Property Name="id_aviso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fecha_ini" Type="smalldatetime" Nullable="false" />
+    <Property Name="fecha_fin" Type="smalldatetime" />
+    <Property Name="msg" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="tipo_aviso" Type="nvarchar" MaxLength="50" />
+    <Property Name="fecha_mod" Type="smalldatetime" />
+    <Property Name="usuario_mod" Type="nvarchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="cab_ts">
+    <Key>
+      <PropertyRef Name="ts_id" />
+    </Key>
+    <Property Name="ts_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_usu" Type="int" Nullable="false" />
+    <Property Name="id_emp" Type="int" Nullable="false" />
+    <Property Name="id_cat" Type="int" Nullable="false" />
+    <Property Name="fecha" Type="smalldatetime" Nullable="false" />
+    <Property Name="horas" Type="int" Nullable="false" />
+    <Property Name="descuento" Type="int" Nullable="false" />
+    <Property Name="descr_esp" Type="nvarchar(max)" />
+    <Property Name="descr_ing" Type="nvarchar(max)" />
+    <Property Name="fecha_mod" Type="smalldatetime" />
+    <Property Name="usuario_mod" Type="nchar" MaxLength="10" />
+    <Property Name="estado" Type="nchar" MaxLength="5" Nullable="false" />
+    <Property Name="id_tser" Type="int" Nullable="false" />
+    <Property Name="grupo" Type="int" Nullable="false" />
+    <Property Name="dueño_grupo" Type="nvarchar" MaxLength="1" Nullable="false" />
+    <Property Name="valor_hh" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+    <Property Name="horas_comerciales" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="cargos">
+    <Key>
+      <PropertyRef Name="id_cargo" />
+    </Key>
+    <Property Name="id_cargo" Type="int" Nullable="false" />
+    <Property Name="nom_cargo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fecha_mod" Type="smalldatetime" />
+    <Property Name="usuario_mod" Type="nvarchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="categorias">
+    <Key>
+      <PropertyRef Name="id_cat" />
+    </Key>
+    <Property Name="id_cat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom_cat" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fecha_mod" Type="smalldatetime" Nullable="false" />
+    <Property Name="usuario_mod" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="estado" Type="bit" Nullable="false" />
+    <Property Name="id_unidad" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="emp_car_tsrv">
+    <Key>
+      <PropertyRef Name="id_emp" />
+      <PropertyRef Name="id_cat" />
+      <PropertyRef Name="id_tser" />
+    </Key>
+    <Property Name="id_emp" Type="int" Nullable="false" />
+    <Property Name="id_cat" Type="int" Nullable="false" />
+    <Property Name="id_tser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="empresas">
+    <Key>
+      <PropertyRef Name="id_emp" />
+    </Key>
+    <Property Name="id_emp" Type="int" Nullable="false" />
+    <Property Name="nom_emp" Type="nvarchar" MaxLength="50" />
+    <Property Name="nomc_emp" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fecha_mod" Type="smalldatetime" />
+    <Property Name="usuario_mod" Type="nvarchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="parametros">
+    <Key>
+      <PropertyRef Name="valor" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="grupo" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="detalle" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="valor" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="texto" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="orden" Type="int" />
+    <Property Name="fecha_mod" Type="datetime" Nullable="false" />
+    <Property Name="usuario_mod" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="estado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="perfil_usuario">
+    <Key>
+      <PropertyRef Name="id_usuario" />
+      <PropertyRef Name="perfil" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_usuario" Type="int" Nullable="false" />
+    <Property Name="perfil" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="periodos">
+    <Key>
+      <PropertyRef Name="id_periodo" />
+    </Key>
+    <Property Name="id_periodo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_tser" Type="int" Nullable="false" />
+    <Property Name="fecha_ini" Type="smalldatetime" Nullable="false" />
+    <Property Name="fecha_fin" Type="smalldatetime" Nullable="false" />
+    <Property Name="estado" Type="bit" />
+    <Property Name="fecha_mod" Type="smalldatetime" />
+    <Property Name="usuario_mod" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tipos_servicios">
+    <Key>
+      <PropertyRef Name="id_tser" />
+    </Key>
+    <Property Name="id_tser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom_tser" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="fecha_mod" Type="smalldatetime" />
+    <Property Name="usuario_mod" Type="nvarchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="unidades">
+    <Key>
+      <PropertyRef Name="id_unidad" />
+    </Key>
+    <Property Name="id_unidad" Type="int" Nullable="false" />
+    <Property Name="nom_unidad" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fecha_mod" Type="smalldatetime" />
+    <Property Name="usuario_mod" Type="nvarchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="unidadesxcategoria">
+    <Key>
+      <PropertyRef Name="id_unidad" />
+      <PropertyRef Name="id_cat" />
+    </Key>
+    <Property Name="id_unidad" Type="int" Nullable="false" />
+    <Property Name="id_cat" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="usuarios">
+    <Key>
+      <PropertyRef Name="id_usu" />
+    </Key>
+    <Property Name="id_usu" Type="int" Nullable="false" />
+    <Property Name="Nom_usu" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nom_cor_usu" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="pass_usu" Type="nvarchar" MaxLength="50" />
+    <Property Name="jefatura" Type="int" />
+    <Property Name="id_cargo" Type="int" Nullable="false" />
+    <Property Name="id_unidad" Type="int" Nullable="false" />
+    <Property Name="fecha_mod" Type="smalldatetime" />
+    <Property Name="usuario_mod" Type="nchar" MaxLength="10" />
+    <Property Name="estado" Type="bit" />
+    <Property Name="jerarquia" Type="nchar" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <EntityType Name="valor_hh">
+    <Key>
+      <PropertyRef Name="id_emp" />
+      <PropertyRef Name="id_unidad" />
+      <PropertyRef Name="id_cargo" />
+    </Key>
+    <Property Name="id_valor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_emp" Type="int" Nullable="false" />
+    <Property Name="id_unidad" Type="int" Nullable="false" />
+    <Property Name="id_cargo" Type="int" Nullable="false" />
+    <Property Name="valor" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+    <Property Name="fecha_mod" Type="smalldatetime" />
+    <Property Name="usuario_mod" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <Association Name="FK_cab_ts_categorias">
+    <End Role="categorias" Type="Self.categorias" Multiplicity="1" />
+    <End Role="cab_ts" Type="Self.cab_ts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categorias">
+        <PropertyRef Name="id_cat" />
+      </Principal>
+      <Dependent Role="cab_ts">
+        <PropertyRef Name="id_cat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cab_ts_empresas">
+    <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+    <End Role="cab_ts" Type="Self.cab_ts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_emp" />
+      </Principal>
+      <Dependent Role="cab_ts">
+        <PropertyRef Name="id_emp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cab_ts_tipos_servicios">
+    <End Role="tipos_servicios" Type="Self.tipos_servicios" Multiplicity="1" />
+    <End Role="cab_ts" Type="Self.cab_ts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipos_servicios">
+        <PropertyRef Name="id_tser" />
+      </Principal>
+      <Dependent Role="cab_ts">
+        <PropertyRef Name="id_tser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cab_ts_usuarios">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="1" />
+    <End Role="cab_ts" Type="Self.cab_ts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id_usu" />
+      </Principal>
+      <Dependent Role="cab_ts">
+        <PropertyRef Name="id_usu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_categorias_unidades">
+    <End Role="unidades" Type="Self.unidades" Multiplicity="1" />
+    <End Role="categorias" Type="Self.categorias" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="unidades">
+        <PropertyRef Name="id_unidad" />
+      </Principal>
+      <Dependent Role="categorias">
+        <PropertyRef Name="id_unidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_emp_car_tsrv_categorias">
+    <End Role="categorias" Type="Self.categorias" Multiplicity="1" />
+    <End Role="emp_car_tsrv" Type="Self.emp_car_tsrv" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categorias">
+        <PropertyRef Name="id_cat" />
+      </Principal>
+      <Dependent Role="emp_car_tsrv">
+        <PropertyRef Name="id_cat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_emp_car_tsrv_empresas">
+    <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+    <End Role="emp_car_tsrv" Type="Self.emp_car_tsrv" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_emp" />
+      </Principal>
+      <Dependent Role="emp_car_tsrv">
+        <PropertyRef Name="id_emp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_emp_car_tsrv_tipos_servicios">
+    <End Role="tipos_servicios" Type="Self.tipos_servicios" Multiplicity="1" />
+    <End Role="emp_car_tsrv" Type="Self.emp_car_tsrv" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipos_servicios">
+        <PropertyRef Name="id_tser" />
+      </Principal>
+      <Dependent Role="emp_car_tsrv">
+        <PropertyRef Name="id_tser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_perfil_usuario_parametros">
+    <End Role="parametros" Type="Self.parametros" Multiplicity="1" />
+    <End Role="perfil_usuario" Type="Self.perfil_usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="parametros">
+        <PropertyRef Name="valor" />
+      </Principal>
+      <Dependent Role="perfil_usuario">
+        <PropertyRef Name="perfil" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_perfil_usuario_usuarios">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="1" />
+    <End Role="perfil_usuario" Type="Self.perfil_usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id_usu" />
+      </Principal>
+      <Dependent Role="perfil_usuario">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_periodos_tipos_servicios">
+    <End Role="tipos_servicios" Type="Self.tipos_servicios" Multiplicity="1" />
+    <End Role="periodos" Type="Self.periodos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipos_servicios">
+        <PropertyRef Name="id_tser" />
+      </Principal>
+      <Dependent Role="periodos">
+        <PropertyRef Name="id_tser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_unidadesxcategoria_categorias">
+    <End Role="categorias" Type="Self.categorias" Multiplicity="1" />
+    <End Role="unidadesxcategoria" Type="Self.unidadesxcategoria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categorias">
+        <PropertyRef Name="id_cat" />
+      </Principal>
+      <Dependent Role="unidadesxcategoria">
+        <PropertyRef Name="id_cat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_unidadesxcategoria_unidades">
+    <End Role="unidades" Type="Self.unidades" Multiplicity="1" />
+    <End Role="unidadesxcategoria" Type="Self.unidadesxcategoria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="unidades">
+        <PropertyRef Name="id_unidad" />
+      </Principal>
+      <Dependent Role="unidadesxcategoria">
+        <PropertyRef Name="id_unidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_usuarios_cargos">
+    <End Role="cargos" Type="Self.cargos" Multiplicity="1" />
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cargos">
+        <PropertyRef Name="id_cargo" />
+      </Principal>
+      <Dependent Role="usuarios">
+        <PropertyRef Name="id_cargo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_usuarios_unidades">
+    <End Role="unidades" Type="Self.unidades" Multiplicity="1" />
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="unidades">
+        <PropertyRef Name="id_unidad" />
+      </Principal>
+      <Dependent Role="usuarios">
+        <PropertyRef Name="id_unidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_valor_hh_cargos">
+    <End Role="cargos" Type="Self.cargos" Multiplicity="1" />
+    <End Role="valor_hh" Type="Self.valor_hh" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cargos">
+        <PropertyRef Name="id_cargo" />
+      </Principal>
+      <Dependent Role="valor_hh">
+        <PropertyRef Name="id_cargo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_valor_hh_empresas">
+    <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+    <End Role="valor_hh" Type="Self.valor_hh" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_emp" />
+      </Principal>
+      <Dependent Role="valor_hh">
+        <PropertyRef Name="id_emp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_valor_hh_unidades">
+    <End Role="unidades" Type="Self.unidades" Multiplicity="1" />
+    <End Role="valor_hh" Type="Self.valor_hh" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="unidades">
+        <PropertyRef Name="id_unidad" />
+      </Principal>
+      <Dependent Role="valor_hh">
+        <PropertyRef Name="id_unidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TSModelStoreContainer">
+    <EntitySet Name="avisos" EntityType="Self.avisos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cab_ts" EntityType="Self.cab_ts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cargos" EntityType="Self.cargos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="categorias" EntityType="Self.categorias" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="emp_car_tsrv" EntityType="Self.emp_car_tsrv" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="empresas" EntityType="Self.empresas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="parametros" EntityType="Self.parametros" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="perfil_usuario" EntityType="Self.perfil_usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="periodos" EntityType="Self.periodos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tipos_servicios" EntityType="Self.tipos_servicios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="unidades" EntityType="Self.unidades" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="unidadesxcategoria" EntityType="Self.unidadesxcategoria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="valor_hh" EntityType="Self.valor_hh" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_cab_ts_categorias" Association="Self.FK_cab_ts_categorias">
+      <End Role="categorias" EntitySet="categorias" />
+      <End Role="cab_ts" EntitySet="cab_ts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cab_ts_empresas" Association="Self.FK_cab_ts_empresas">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="cab_ts" EntitySet="cab_ts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cab_ts_tipos_servicios" Association="Self.FK_cab_ts_tipos_servicios">
+      <End Role="tipos_servicios" EntitySet="tipos_servicios" />
+      <End Role="cab_ts" EntitySet="cab_ts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cab_ts_usuarios" Association="Self.FK_cab_ts_usuarios">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="cab_ts" EntitySet="cab_ts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_categorias_unidades" Association="Self.FK_categorias_unidades">
+      <End Role="unidades" EntitySet="unidades" />
+      <End Role="categorias" EntitySet="categorias" />
+    </AssociationSet>
+    <AssociationSet Name="FK_emp_car_tsrv_categorias" Association="Self.FK_emp_car_tsrv_categorias">
+      <End Role="categorias" EntitySet="categorias" />
+      <End Role="emp_car_tsrv" EntitySet="emp_car_tsrv" />
+    </AssociationSet>
+    <AssociationSet Name="FK_emp_car_tsrv_empresas" Association="Self.FK_emp_car_tsrv_empresas">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="emp_car_tsrv" EntitySet="emp_car_tsrv" />
+    </AssociationSet>
+    <AssociationSet Name="FK_emp_car_tsrv_tipos_servicios" Association="Self.FK_emp_car_tsrv_tipos_servicios">
+      <End Role="tipos_servicios" EntitySet="tipos_servicios" />
+      <End Role="emp_car_tsrv" EntitySet="emp_car_tsrv" />
+    </AssociationSet>
+    <AssociationSet Name="FK_perfil_usuario_parametros" Association="Self.FK_perfil_usuario_parametros">
+      <End Role="parametros" EntitySet="parametros" />
+      <End Role="perfil_usuario" EntitySet="perfil_usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_perfil_usuario_usuarios" Association="Self.FK_perfil_usuario_usuarios">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="perfil_usuario" EntitySet="perfil_usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_periodos_tipos_servicios" Association="Self.FK_periodos_tipos_servicios">
+      <End Role="tipos_servicios" EntitySet="tipos_servicios" />
+      <End Role="periodos" EntitySet="periodos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_unidadesxcategoria_categorias" Association="Self.FK_unidadesxcategoria_categorias">
+      <End Role="categorias" EntitySet="categorias" />
+      <End Role="unidadesxcategoria" EntitySet="unidadesxcategoria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_unidadesxcategoria_unidades" Association="Self.FK_unidadesxcategoria_unidades">
+      <End Role="unidades" EntitySet="unidades" />
+      <End Role="unidadesxcategoria" EntitySet="unidadesxcategoria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_usuarios_cargos" Association="Self.FK_usuarios_cargos">
+      <End Role="cargos" EntitySet="cargos" />
+      <End Role="usuarios" EntitySet="usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_usuarios_unidades" Association="Self.FK_usuarios_unidades">
+      <End Role="unidades" EntitySet="unidades" />
+      <End Role="usuarios" EntitySet="usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_valor_hh_cargos" Association="Self.FK_valor_hh_cargos">
+      <End Role="cargos" EntitySet="cargos" />
+      <End Role="valor_hh" EntitySet="valor_hh" />
+    </AssociationSet>
+    <AssociationSet Name="FK_valor_hh_empresas" Association="Self.FK_valor_hh_empresas">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="valor_hh" EntitySet="valor_hh" />
+    </AssociationSet>
+    <AssociationSet Name="FK_valor_hh_unidades" Association="Self.FK_valor_hh_unidades">
+      <End Role="unidades" EntitySet="unidades" />
+      <End Role="valor_hh" EntitySet="valor_hh" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

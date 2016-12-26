@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <title> SmartAdmin (AJAX)</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- #CSS Links -->
+    <!-- Basic Styles -->
+    <link rel="stylesheet" type="text/css" media="screen" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/css/font-awesome.min.css">
+
+    <!-- SmartAdmin Styles : Caution! DO NOT change the order -->
+    <link rel="stylesheet" type="text/css" media="screen" href="~/css/smartadmin-production.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/css/smartadmin-skins.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/css/your_style.css">
+
+    <!-- #FAVICONS -->
+    <link rel="shortcut icon" href="~/img/favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="~/img/favicon/favicon.ico" type="image/x-icon">
+
+    <!-- #GOOGLE FONT -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+</head>
+
+<!-- #BODY -->
+<!-- Possible Classes
+
+    * 'smart-style-{SKIN#}'
+    * 'smart-rtl'         - Switch theme mode to RTL
+    * 'menu-on-top'       - Switch to top navigation (no DOM change required)
+    * 'no-menu'			  - Hides the menu completely
+    * 'hidden-menu'       - Hides the main menu but still accessable by hovering over left edge
+    * 'fixed-header'      - Fixes the header
+    * 'fixed-navigation'  - Fixes the main menu
+    * 'fixed-ribbon'      - Fixes breadcrumb
+    * 'fixed-page-footer' - Fixes footer
+    * 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
+-->
+<body class="menu-on-top fixed-header fixed-navigation">
+
+    <!-- #NAVIGATION -->
+    <!-- Left panel : Navigation area -->
+    <!-- Note: This width of the aside area can be adjusted through LESS/SASS variables -->
+    <aside id="left-panel">
+        <div id="logo-group">
+
+            <!-- PLACE YOUR LOGO HERE -->
+            <span id="logo"> <img src="~/img/logo.jpg" alt="SmartAdmin"> </span>
+            <!-- END LOGO PLACEHOLDER -->
+        </div>
+
+        <!-- #TOGGLE LAYOUT BUTTONS -->
+        <!-- pulled right: nav area -->
+        <div class="pull-right">
+
+            <!-- collapse menu button -->
+            <div id="hide-menu" class="btn-header pull-right">
+                <span> <a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu"><i class="fa fa-reorder"></i></a> </span>
+            </div>
+            <!-- end collapse menu -->
+            <!-- #MOBILE -->
+            <!-- Top menu profile link : this shows only when top menu is active -->
+            <ul id="mobile-profile-img" class="header-dropdown-list hidden-xs padding-5">
+                <li class="">
+                    <a href="#" class="dropdown-toggle no-margin userdropdown" data-toggle="dropdown">
+                        <img src="~/img/avatars/sunny.png" alt="John Doe" class="online" />
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+                        <li>
+                            <a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0"><i class="fa fa-cog"></i> Setting</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#ajax/profile.html" class="padding-10 padding-top-0 padding-bottom-0"> <i class="fa fa-user"></i> <u>P</u>rofile</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0" data-action="toggleShortcut"><i class="fa fa-arrow-down"></i> <u>S</u>hortcut</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0" data-action="launchFullscreen"><i class="fa fa-arrows-alt"></i> Full <u>S</u>creen</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="login.html" class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- logout button -->
+            <div id="logout" class="btn-header transparent pull-right">
+                <span> <a href="login.html" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
+            </div>
+            <!-- end logout button -->
+            <!-- search mobile button (this is hidden till mobile view port) -->
+            <div id="search-mobile" class="btn-header transparent pull-right">
+                <span> <a href="javascript:void(0)" title="Search"><i class="fa fa-search"></i></a> </span>
+            </div>
+            <!-- end search mobile button -->
+            <!-- #SEARCH -->
+            <!-- input: search field -->
+            <form action="#ajax/search.html" class="header-search pull-right">
+                <input id="search-fld" type="text" name="param" placeholder="Buscar empleado...">
+                <button type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+                <a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
+            </form>
+            <!-- end input: search field -->
+            <!-- fullscreen button -->
+            <div id="fullscreen" class="btn-header transparent pull-right">
+                <span> <a href="javascript:void(0);" data-action="launchFullscreen" title="Full Screen"><i class="fa fa-arrows-alt"></i></a> </span>
+            </div>
+            <!-- end fullscreen button -->
+
+        </div>
+        <!-- end pulled right: nav area -->
+        <!-- User info -->
+        <div class="login-info">
+            <span>
+                <!-- User image size is adjusted inside CSS, it should stay as is -->
+
+                <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
+                    <img src="~/img/avatars/sunny.png" alt="me" class="online" />
+                    <span>
+                        john.doe
+                    </span>
+                    <i class="fa fa-angle-down"></i>
+                </a>
+
+            </span>
+        </div>
+        <!-- end user info -->
+        <!-- NAVIGATION : This navigation is also responsive -->
+        <nav>
+            <ul>
+                <li class="">
+                    <a href="ajax/dashboard.html" title="blank_"><i class="fa fa-lg fa-fw fa-calendar"></i> <span class="menu-item-parent">Ingreso de Días</span></a>
+                </li>
+                <li class="">
+                    <a href="ajax/registro.html" title="blank_"><i class="fa fa-lg fa-fw fa-cubes"></i> <span class="menu-item-parent">Registro Histórico</span></a>
+                </li>
+                <li class="">
+                    <a href="super/reportes.html" title="blank_"><i class="fa fa-lg fa-fw fa-bar-chart"></i> <span class="menu-item-parent">Reportes</span></a>
+                </li>
+                <li class="">
+                    <a href="ajax/configuracion.html" title="blank_"><i class="fa fa-lg fa-fw fa-cog"></i> <span class="menu-item-parent">Configuraciones</span></a>
+                </li>
+            </ul>
+        </nav>
+
+        <span class="minifyme" data-action="minifyMenu"> <i class="fa fa-arrow-circle-left hit"></i> </span>
+
+    </aside>
+    <!-- END NAVIGATION -->
+    <!-- #MAIN PANEL -->
+    <div id="main" role="main">
+
+        <!-- RIBBON -->
+        <div id="ribbon">
+
+            <!-- breadcrumb -->
+            <ol class="breadcrumb" style="display:none;">
+                <!-- This is auto generated -->
+            </ol>
+            <!-- end breadcrumb -->
+            <div id="navegacion">
+                <a class="btn btn-danger btn-lg" href="javascript:void(0);">Distrito Ejemplo</a>
+                <a class="btn btn-danger btn-lg" href="javascript:void(0);">Local Ejemplo</a>
+                <a class="btn btn-danger btn-lg" href="javascript:void(0);">Empleado Ejemplo</a>
+            </div>
+        </div>
+        <!-- END RIBBON -->
+        <!-- #MAIN CONTENT -->
+        <div id="content">
+            @RenderBody()
+        </div>
+
+        <!-- END #MAIN CONTENT -->
+
+    </div>
+    <!-- END #MAIN PANEL -->
+    <!-- #PAGE FOOTER -->
+    <div class="page-footer">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <span class="">Pso © 2016 <span class="hidden-xs"> - Control de Días Adicionales</span></span>
+            </div>
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- END FOOTER -->
+    <!-- #SHORTCUT AREA : With large tiles (activated via clicking user name tag)
+         Note: These tiles are completely responsive, you can add as many as you like -->
+    <div id="shortcut">
+        <ul>
+            <li>
+                <a href="#ajax/dashboard.html" class="jarvismetro-tile big-cubes bg-color-blue"> <span class="iconbox"> <i class="fa fa-envelope fa-4x"></i> <span>Mail <span class="label pull-right bg-color-darken">14</span></span> </span> </a>
+            </li>
+        </ul>
+    </div>
+    <!-- END SHORTCUT AREA -->
+    <!--================================================== -->
+    <!-- #PLUGINS -->
+    <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+    <script src="~/js/libs/jquery-2.1.1.min.js"></script>
+    <script src="~/js/libs/jquery-ui-1.10.3.min.js"></script>
+
+    <!-- IMPORTANT: APP CONFIG -->
+    <script src="~/js/app.config.seed.js"></script>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="~/js/bootstrap/bootstrap.min.js"></script>
+
+    <!--[if IE 8]>
+        <h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+    <![endif]-->
+    <!-- MAIN APP JS FILE -->
+    <script src="~/js/app.seed.js"></script>
+
+
+</body>
+
+</html>

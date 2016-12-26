@@ -1,0 +1,43 @@
+﻿   <!-- HEADER -->
+<header id="header" style="width:100%; height:53px!important;">
+    <div>
+        <span id="logo"> <img src="img/logoint2.png" alt="Timesheets"> </span>
+    </div>
+
+    @*<!---------------------------------------------------->
+        <div id="logo-group" class="btn-header transparent hidden-sm hidden-xs">
+            <span id="activity" class="activity-dropdown"> <i class="fa fa-user"></i> <b class="badge">10 </b> </span>
+            <div class="ajax-dropdown">
+                <div class="btn-group btn-group-justified" data-toggle="buttons">
+
+                </div>
+
+                <!-- Contenido notificación -->
+                <div class="ajax-notifications custom-scroll">
+
+                        @{Html.RenderPartial("partials/_Notificaciones"); }
+
+
+                </div>
+
+                <span>
+                    Ultima actualización : 12/12/2013 9:43AM
+                    <button type="button" data-loading-text="<i class='fa fa-refresh fa-spin'></i> Cargando" class="btn btn-xs btn-default pull-right">
+                        <i class="fa fa-refresh"></i>
+                    </button>
+                </span>
+
+            </div>
+        </div>
+        <!---------------------------------------------------->*@
+
+
+    <section id="top-right">
+
+        <div class="pull-right">
+            @Html.Partial("partials/_TopRight")
+        </div>
+
+    </section>
+</header>
+<!-- END HEADER -->

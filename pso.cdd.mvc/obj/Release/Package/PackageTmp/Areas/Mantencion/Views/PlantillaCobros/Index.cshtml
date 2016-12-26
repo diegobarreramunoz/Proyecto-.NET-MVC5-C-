@@ -1,0 +1,48 @@
+﻿@model IEnumerable<pso.cdd.model.valor_hh>
+
+<h1><i class="glyphicon glyphicon-usd"></i> Plantilla /<span style="color:#3276b1;"> Cobros</span></h1>
+
+<!-----------------------------------------------Boton Ingresar Nuevo-------------------------------------------------------->
+
+<section id="" class="table table-striped  table-hover" width="100%">
+    <a href="@Url.Action("Create", "PlantillaCobros")" data-toggle="modal" data-target="#remoteModal" class="btn btn-warning btn-sm">Nuevo Cobro</a>
+</section>
+
+<!---------------------------------------Tabla Responsiva------------------------------------------------------------------>
+<table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
+    <thead>
+        <tr>
+            <th></th>
+            <th data-hide="">@Html.DisplayNameFor(model => model.valor)</th>
+            <th data-class="expand"><i class="text-muted hidden-md hidden-sm hidden-xs"></i>@Html.DisplayNameFor(model => model.empresas.nom_emp)</th>
+            <th data-hide="phone"><i class="text-muted hidden-md hidden-sm hidden-xs"></i>@Html.DisplayNameFor(model => model.unidades.nom_unidad)</th>
+            <th>@Html.DisplayNameFor(model => model.cargos.nom_cargo)</th>
+            <th data-hide="phone,tablet"><i class="txt-color-blue hidden-md hidden-sm hidden-xs"></i>@Html.DisplayNameFor(model => model.usuario_mod)</th>
+            <th data-hide="phone,tablet"><i class="text-muted hidden-sm hidden-xs"></i>@Html.DisplayNameFor(model => model.fecha_mod)</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    <button class="btn btn-default" href="@Url.Action("Edit", new { id = item.id_valor})" data-toggle="modal" data-target="#remoteModal"><i class="fa fa-edit"></i></button>
+                    <button class="btn btn-default" onclick="confirmaElimina(this, '@Url.Action("Delete", new { id = item.id_valor })');"><i class="fa fa-trash-o"></i></button>
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.valor)</td>
+                <td>@Html.DisplayFor(modelItem => item.empresas.nom_emp)</td>
+                <td>@Html.DisplayFor(modelItem => item.unidades.nom_unidad)</td>
+                <td>@Html.DisplayFor(modelItem => item.cargos.nom_cargo)</td>
+                <td>@Html.DisplayFor(modelItem => item.usuario_mod)</td>
+                <td>@Html.DisplayFor(modelItem => item.fecha_mod)</td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+        pageSetUp();
+        InicializaMantenedor("dt_basic");
+        activaModal();
+</script>

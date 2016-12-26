@@ -1,0 +1,75 @@
+F:\04 - MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\pso.cdd.model.dll
+F:\04 - MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\pso.cdd.model.pdb
+F:\04 - MTIC\pso - Horarios\Solucion\pso.cdd.model\obj\Debug\pso.cdd.model.csprojResolveAssemblyReference.cache
+F:\04 - MTIC\pso - Horarios\Solucion\pso.cdd.model\obj\Debug\pso.cdd.model.dll
+F:\04 - MTIC\pso - Horarios\Solucion\pso.cdd.model\obj\Debug\pso.cdd.model.pdb
+D:\04 - MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\pso.cdd.model.dll.config
+D:\04 - MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\pso.cdd.model.dll
+D:\04 - MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\pso.cdd.model.pdb
+D:\04 - MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\EntityFramework.dll
+D:\04 - MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\EntityFramework.SqlServer.dll
+D:\04 - MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\EntityFramework.xml
+D:\04 - MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\EntityFramework.SqlServer.xml
+D:\04 - MTIC\pso - Horarios\Solucion\pso.cdd.model\obj\Debug\pso.cdd.model.dll
+D:\04 - MTIC\pso - Horarios\Solucion\pso.cdd.model\obj\Debug\pso.cdd.model.pdb
+D:\04 - MTIC\pso - Horarios\Solucion\pso.cdd.model\obj\Debug\pso.cdd.model.csprojResolveAssemblyReference.cache
+C:\Users\ginoa\Projects\MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\pso.cdd.model.dll.config
+C:\Users\ginoa\Projects\MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\pso.cdd.model.dll
+C:\Users\ginoa\Projects\MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\pso.cdd.model.pdb
+C:\Users\ginoa\Projects\MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\EntityFramework.dll
+C:\Users\ginoa\Projects\MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ginoa\Projects\MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\EntityFramework.xml
+C:\Users\ginoa\Projects\MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\ginoa\Projects\MTIC\pso - Horarios\Solucion\pso.cdd.model\obj\Debug\pso.cdd.model.csprojResolveAssemblyReference.cache
+C:\Users\ginoa\Projects\MTIC\pso - Horarios\Solucion\pso.cdd.model\obj\Debug\pso.cdd.model.dll
+C:\Users\ginoa\Projects\MTIC\pso - Horarios\Solucion\pso.cdd.model\obj\Debug\pso.cdd.model.pdb
+F:\Projects\MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\pso.cdd.model.dll.config
+F:\Projects\MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\pso.cdd.model.dll
+F:\Projects\MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\pso.cdd.model.pdb
+F:\Projects\MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\EntityFramework.dll
+F:\Projects\MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\EntityFramework.SqlServer.dll
+F:\Projects\MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\EntityFramework.xml
+F:\Projects\MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\EntityFramework.SqlServer.xml
+F:\Projects\MTIC\pso - Horarios\Solucion\pso.cdd.model\obj\Debug\pso.cdd.model.csprojResolveAssemblyReference.cache
+F:\Projects\MTIC\pso - Horarios\Solucion\pso.cdd.model\obj\Debug\pso.cdd.model.dll
+F:\Projects\MTIC\pso - Horarios\Solucion\pso.cdd.model\obj\Debug\pso.cdd.model.pdb
+C:\Users\ginoa\OneDrive\CL-MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\pso.cdd.model.dll.config
+C:\Users\ginoa\OneDrive\CL-MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\pso.cdd.model.dll
+C:\Users\ginoa\OneDrive\CL-MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\pso.cdd.model.pdb
+C:\Users\ginoa\OneDrive\CL-MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\EntityFramework.dll
+C:\Users\ginoa\OneDrive\CL-MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ginoa\OneDrive\CL-MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\EntityFramework.xml
+C:\Users\ginoa\OneDrive\CL-MTIC\pso - Horarios\Solucion\pso.cdd.model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\ginoa\OneDrive\CL-MTIC\pso - Horarios\Solucion\pso.cdd.model\obj\Debug\pso.cdd.model.dll
+C:\Users\ginoa\OneDrive\CL-MTIC\pso - Horarios\Solucion\pso.cdd.model\obj\Debug\pso.cdd.model.pdb
+C:\Users\ginoa\OneDrive\CL-MTIC\pso - Horarios\Solucion\pso.cdd.model\obj\Debug\pso.cdd.model.csprojResolveAssemblyReference.cache
+\\psurfs\datauser$\aneves\Downloads\Solucion-PSO\pso.cdd.model\bin\Debug\pso.cdd.model.dll.config
+\\psurfs\datauser$\aneves\Downloads\Solucion-PSO\pso.cdd.model\bin\Debug\pso.cdd.model.dll
+\\psurfs\datauser$\aneves\Downloads\Solucion-PSO\pso.cdd.model\bin\Debug\pso.cdd.model.pdb
+\\psurfs\datauser$\aneves\Downloads\Solucion-PSO\pso.cdd.model\bin\Debug\EntityFramework.dll
+\\psurfs\datauser$\aneves\Downloads\Solucion-PSO\pso.cdd.model\bin\Debug\EntityFramework.SqlServer.dll
+\\psurfs\datauser$\aneves\Downloads\Solucion-PSO\pso.cdd.model\bin\Debug\EntityFramework.xml
+\\psurfs\datauser$\aneves\Downloads\Solucion-PSO\pso.cdd.model\bin\Debug\EntityFramework.SqlServer.xml
+\\psurfs\datauser$\aneves\Downloads\Solucion-PSO\pso.cdd.model\obj\Debug\pso.cdd.model.csprojResolveAssemblyReference.cache
+\\psurfs\datauser$\aneves\Downloads\Solucion-PSO\pso.cdd.model\obj\Debug\pso.cdd.model.dll
+\\psurfs\datauser$\aneves\Downloads\Solucion-PSO\pso.cdd.model\obj\Debug\pso.cdd.model.pdb
+P:\PSO\PERSONAL PSO\Diego Barrera\Solucion-PSO\pso.cdd.model\bin\Debug\pso.cdd.model.dll.config
+P:\PSO\PERSONAL PSO\Diego Barrera\Solucion-PSO\pso.cdd.model\bin\Debug\pso.cdd.model.dll
+P:\PSO\PERSONAL PSO\Diego Barrera\Solucion-PSO\pso.cdd.model\bin\Debug\pso.cdd.model.pdb
+P:\PSO\PERSONAL PSO\Diego Barrera\Solucion-PSO\pso.cdd.model\bin\Debug\EntityFramework.dll
+P:\PSO\PERSONAL PSO\Diego Barrera\Solucion-PSO\pso.cdd.model\bin\Debug\EntityFramework.SqlServer.dll
+P:\PSO\PERSONAL PSO\Diego Barrera\Solucion-PSO\pso.cdd.model\bin\Debug\EntityFramework.xml
+P:\PSO\PERSONAL PSO\Diego Barrera\Solucion-PSO\pso.cdd.model\bin\Debug\EntityFramework.SqlServer.xml
+P:\PSO\PERSONAL PSO\Diego Barrera\Solucion-PSO\pso.cdd.model\obj\Debug\pso.cdd.model.csprojResolveAssemblyReference.cache
+P:\PSO\PERSONAL PSO\Diego Barrera\Solucion-PSO\pso.cdd.model\obj\Debug\pso.cdd.model.dll
+P:\PSO\PERSONAL PSO\Diego Barrera\Solucion-PSO\pso.cdd.model\obj\Debug\pso.cdd.model.pdb
+C:\Users\dbarrera\Source\Repos\Solucion-PSO\pso.cdd.model\bin\Debug\pso.cdd.model.dll.config
+C:\Users\dbarrera\Source\Repos\Solucion-PSO\pso.cdd.model\bin\Debug\pso.cdd.model.dll
+C:\Users\dbarrera\Source\Repos\Solucion-PSO\pso.cdd.model\bin\Debug\pso.cdd.model.pdb
+C:\Users\dbarrera\Source\Repos\Solucion-PSO\pso.cdd.model\bin\Debug\EntityFramework.dll
+C:\Users\dbarrera\Source\Repos\Solucion-PSO\pso.cdd.model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\dbarrera\Source\Repos\Solucion-PSO\pso.cdd.model\bin\Debug\EntityFramework.xml
+C:\Users\dbarrera\Source\Repos\Solucion-PSO\pso.cdd.model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\dbarrera\Source\Repos\Solucion-PSO\pso.cdd.model\obj\Debug\pso.cdd.model.dll
+C:\Users\dbarrera\Source\Repos\Solucion-PSO\pso.cdd.model\obj\Debug\pso.cdd.model.pdb
+C:\Users\dbarrera\Source\Repos\Solucion-PSO\pso.cdd.model\obj\Debug\pso.cdd.model.csprojResolveAssemblyReference.cache

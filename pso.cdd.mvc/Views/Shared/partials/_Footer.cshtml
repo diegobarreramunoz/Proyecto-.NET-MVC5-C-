@@ -1,0 +1,55 @@
+﻿  <!-- PAGE FOOTER -->
+<div class="page-footer navbar-fixed-bottom" style="width:100%; height:45px!important;">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <i class="txt-color-blueLight hidden-mobile"><span class="">Puente Sur Outsourcing © 2016 <span class="hidden-xs">  @*-  @Html.AppData().Title*@</span></span></i>
+        </div>
+
+        <div class="col-xs-6 col-sm-6 col-md-6 text-right hidden-sm hidden-xs">
+            <div class="txt-color-white inline-block">
+                <i class="txt-color-blueLight hidden-mobile"><i class="fa fa-clock-o"></i> Usuario conectado : <strong> @Html.SesionLogin().Nom_usu &nbsp;</strong>&nbsp;</i>
+               
+                <div class="btn-group dropup">
+                    <span class="label" style="color:orangered"> Horas de la semana: @Html.Raw(ViewBag.sem_dia_cab)</span>
+                    <button class="btn btn-xs dropdown-toggle btn bg-color-orange txt-color-white" data-toggle="dropdown">
+                        <i class="fa fa-link"></i> <span class="caret"></span>
+
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div>
+                                <a href="javascript:confirmaCierre(this, '@Url.Action("Logout", "Home")');" class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>C</u>errar sesión</strong></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--============================no borrar footer==============================--->
+
+@*<div class="navbar-fixed-bottom">
+
+    <div class="col-xs-6 col-sm-6 text-right hidden-xs">
+        <div class="txt-color-white inline-block">
+            <i class="txt-color-blueLight hidden-mobile"><span class="">Puente Sur Outsourcing © 2016  <span class="hidden-xs"> -  @Html.AppData().Title</span></span><i class="fa fa-clock-o">  </i> Usuario conectado : <strong> @Html.SesionLogin().Nom_usu &nbsp;</strong>&nbsp;</i>
+            <div class="btn-group dropup">
+                <button class="btn btn-xs dropdown-toggle bg-color-blue txt-color-white" data-toggle="dropdown">
+                    <i class="fa fa-link"></i><span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu pull-right">
+                    <li>
+                        <a href="javascript:confirmaCierre(this, '@Url.Action("Logout", "Home")');" class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>C</u>errar sesión</strong></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+
+
+
+
+<!-- END PAGE FOOTER -->

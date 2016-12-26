@@ -1,0 +1,107 @@
+﻿ <aside id="left-panel">
+   @{ List<pso.cdd.model.perfil_usuario> perfiles = (List<pso.cdd.model.perfil_usuario>)ViewBag.perfiles;}
+     <nav>
+         <ul>
+             
+             <li>
+                 <a href="@Url.Action("Panel", "Home")" title="blank_"><i class="glyphicon glyphicon-calendar"></i> <span class="menu-item-parent"> Calendario</span></a>
+             </li>
+             <li>
+                 <a href="@Url.Action("Panel11", "Home")" title="blank_"><i class="glyphicon glyphicon-time"></i> <span class="menu-item-parent"> Horas del Mes</span></a>
+             </li>
+
+             @if (perfiles.Where(item => item.perfil == "PERUSUINGHH").Any())
+             {
+                <li>
+                    <a href="@Url.Action("Panel1", "Home")" title="blank_"><i class="glyphicon glyphicon-edit"></i> <span class="menu-item-parent"> Ingreso de Horas</span></a>
+                </li>
+             }
+             
+            @if (perfiles.Where(item => item.perfil == "PERUSUREVPER" || item.perfil == "PERUSUREVFAC").Any())
+            {
+                <li class="">
+                    <a href="#"><i class="fa fa-check-circle-o"></i> <span class="menu-item-parent">Revisión</span></a>
+                    <ul>
+                        @if (perfiles.Where(item => item.perfil == "PERUSUREVPER").Any())
+                        {
+                            <li>
+                                <a href="@Url.Action("Panel2", "Home")" title="blank_"><i class="fa fa-check-circle-o"></i> <span class="menu-item-parent"> Revisión en Periodo</span></a>
+                            </li>
+                        }
+                        @if (perfiles.Where(item => item.perfil == "PERUSUREVFAC").Any())
+                        {
+                            <li>
+                                <a href="@Url.Action("Panel3", "Home")" title="blank_"><i class="fa fa-check-circle-o"></i> <span class="menu-item-parent"> Revisión Facturación</span></a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+             
+
+            @if (perfiles.Where(item => item.perfil == "PERUSUREPSIM" || item.perfil == "PERUSUREPFUL" || item.perfil == "PERUSUESTSER" || item.perfil == "PERUSUREPSEM").Any())
+            {
+                <li class="">
+                    <a href="#"><i class="glyphicon glyphicon-list-alt"></i> <span class="menu-item-parent">Reportes</span></a>
+                    <ul>
+                        @if (perfiles.Where(item => item.perfil == "PERUSUREPSIM").Any())
+                        {
+                            <li>
+                                <a href="@Url.Action("Panel8", "Home")" title="blank_"><i class="glyphicon glyphicon-list-alt"></i> <span class="menu-item-parent"> Reporte Simple</span></a>
+                            </li>
+                        }
+                        @if (perfiles.Where(item => item.perfil == "PERUSUREPFUL").Any())
+                        {
+                            <li>
+                                <a href="@Url.Action("Panel6", "Home")" title="blank_"><i class="glyphicon glyphicon-list-alt"></i> <span class="menu-item-parent"> Reporte Full</span></a>
+                            </li>
+
+                            <li>
+                                <a href="@Url.Action("Panel10", "Home")" title="blank_"><i class="glyphicon glyphicon-list-alt"></i> <span class="menu-item-parent"> Reporte Facturación</span></a>
+                            </li>
+                        }
+                        @if (perfiles.Where(item => item.perfil == "PERUSUESTSER").Any())
+                        {
+                            <li>
+                                <a href="@Url.Action("Panel9", "Home")" title="blank_"><i class="glyphicon glyphicon-list-alt"></i> <span class="menu-item-parent"> Estados de Servicios</span></a>
+                            </li>
+                        }
+                        @if (perfiles.Where(item => item.perfil == "PERUSUREPSEM").Any())
+                        {
+                            <li>
+                                <a href="@Url.Action("Panel5", "Home")" title="blank_"><i class="glyphicon glyphicon-list-alt"></i> <span class="menu-item-parent"> Reporte Semanal</span></a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+            @if (perfiles.Where(item => item.perfil == "PERUSUMANPLC" || item.perfil == "PERUSUMANUSU" || item.perfil == "PERUSUMANAVI" || item.perfil == "PERUSUMANPER").Any())
+            {
+                <li class="">
+                    <a href="#"><i class="glyphicon glyphicon-wrench"></i> <span class="menu-item-parent">Mantención</span></a>
+                    <ul>
+                        <li class="">
+                            <a href="@Url.Action("Panel7", "Home")" title="blank_"><i class="fa fa-wrench"></i> Mantención Sistema</a>
+                        </li>
+                    </ul>
+                </li>
+            }
+             <li class="">
+                 <a href="#"><i class="glyphicon glyphicon-log-out"></i> <span class="menu-item-parent">Cerrar Sesión</span></a>
+                 <ul>
+                     <li class="">
+                         <a href="#" onclick="confirmaCierre(this, '@Url.Action("Logout", "Home")')" title="blank_" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i><strong><u>C</u>errar sesión</strong></a>
+                     </li>
+                     <li class="">
+                         <a href="@Url.Action("MisDatos", "Home")"> <i class="fa fa-user"></i> <u>M</u>is Datos</a>
+                     </li>
+                 </ul>
+             </li>
+
+         </ul>
+     </nav>
+    <span class="minifyme" data-action="minifyMenu">
+        <i class="fa fa-arrow-circle-left hit"></i>
+    </span>
+    <hr />
+</aside>

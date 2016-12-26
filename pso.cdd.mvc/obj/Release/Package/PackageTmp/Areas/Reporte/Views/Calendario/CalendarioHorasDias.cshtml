@@ -1,0 +1,103 @@
+﻿@model List<Dictionary<string,object>>
+
+<style>
+    .ultra-light{font-weight:300!important}.font-xs{font-size:85%!important}
+    .fc-title {
+    font-size:small;
+    text-align:right;
+    }
+
+    #calendar {
+    margin:auto;
+    }
+    #calendar .fc-today {
+    background:#ffe7d9;
+    }
+    #calendar .fc-day { 
+    
+    }
+    #calendar .fc-day:hover {
+    background:#ececec;
+    }
+
+    .fc-event-time, .fc-event-title {
+        padding: 3px 0 2px 3px;
+        display: inline-block;
+        line-height: 16px;
+        font-weight: 700;
+        font-size: 11px;
+        box-sizing: border-box;
+    }
+</style>
+<script type="text/javascript">
+    var fullviewcalendar;
+    function pagefunction() {
+        var date = new Date();
+        var d = date.getDate();
+        var m = date.getMonth();
+        var y = date.getFullYear();
+        var hdr = {
+            left: 'title',
+            right: 'prev,today,next'
+        };
+        fullviewcalendar = $('#calendar').fullCalendar({
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+            buttonText: { today: '   Hoy   ' },
+            firstDay: 1,
+            header: hdr,
+            editable: false,
+            droppable: false,
+            eventLimit: true,
+            events: [
+
+                @foreach(var it in Model) {
+                @Html.Raw("{  title: 'Horas del Día', icon: 'glyphicon glyphicon-ok',  allDay: true, description: '" + Decimal.Round( Decimal.Parse((it["horas"]).ToString())/60,2) + " ', " +
+                 "start: '" + (it["fecha"]) + "'," +
+                 "end: '" + (it["fecha"]) + "'}, ");
+                            @*"className: ['event', '"+ it.tipo_aviso + "'] }, ") ;*@
+                }
+            ],
+
+            eventRender: function (event, element, icon) {
+
+
+                    element.attr('href', 'javascript:void(0);');
+                    element.click(function () {
+
+                    $("#infoevento").html(event.description);
+                    $("#contenidoevento").dialog({ modal: true, title:(event.start).format('DD MMMM') });
+                    });
+
+                    if (event.icon != "") {
+
+                        element.find('.fc-title').append("<span class='" + event.icon + "' style='position:absolute; left: calc(100% - 15px);'></span>");
+                        element.find('.fc-content').append("<h4><p style='text-align:center;'>" + event.description + "</p></h4>");
+                     }
+
+
+                
+            },
+
+            windowResize: function (event, ui) {
+                $('#calendar').fullCalendar('render');
+            }
+        });
+
+
+    };
+
+    pagefunction();
+
+</script>
+
+
+<div class="container" id="contcalendar">
+    <div id="calendar"></div>
+    <div id="contenidoevento" style="text-align:center; font-size:400%;color:coral;">
+        <div id="infoevento"></div>
+    </div>
+</div>
+    

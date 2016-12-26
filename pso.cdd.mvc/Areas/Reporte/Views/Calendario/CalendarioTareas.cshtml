@@ -1,0 +1,81 @@
+﻿@{
+    var colores = new[] { "color-green", "color-greenDark", "color-greenLight", "color-purple", "color-magenta", "color-pink", "color-pinkDark", "color-blue", "color-blueLight", "color-blueDark", "color-teal", "color-yellow", "color-orange", "color-orangeDark", "color-red", "color-redLight" };
+
+}
+<style>
+    .fc-title {
+        white-space: nowrap;
+    }
+
+    .fc-event .fa {
+        margin-top: 0;
+        margin-right: 5px;
+        margin-left: 0;
+    }
+    #contcalendar {
+        padding:10px 30px 10px 10px;
+    }
+</style>
+
+@*<link rel="stylesheet" type="text/css" media="screen" href="~/css/bootstrap-fullcalendar.css">*@
+<link href="~/css/fullcalendar.min.css" rel="stylesheet" />
+<div class="container" id="contcalendar">
+    
+     
+         <div id="calendar"></div>
+  
+    
+</div>
+
+<script type="text/javascript">
+    var fullviewcalendar;
+    function pagefunction() {
+        var date = new Date();
+        var d = date.getDate();
+        var m = date.getMonth();
+        var y = date.getFullYear();
+
+        var hdr = {
+            left: 'title',
+            center: 'month',
+            right: 'prev,today,next'
+        };
+        fullviewcalendar = $('#calendar').fullCalendar({
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+            buttonText: { today: '   Hoy   ' },
+            //firstDay: 1,
+            header: hdr,
+            editable: false,
+            droppable: false,
+            eventLimit: true,
+            events: [
+                @foreach(var it in Model) {
+                @Html.Raw("{ title: '"+it.msg + "', " +
+                            "start: '"+it.fecha_ini.ToString("yyyy-MM-dd")+"', " +
+                            "end: '" + it.fecha_fin.ToString("yyyy-MM-dd") + "', "+
+                            "className: ['event', '"+ it.tipo_aviso + "'] }, ") ;
+                   
+                }
+            ],
+
+            windowResize: function (event, ui) {
+                $('#calendar').fullCalendar('render');
+            },
+            eventRender: function (event, element, view) {
+                if (view.name === 'month') {
+                    element.find('span.fc-title').html(element.find('span.fc-title').text());
+                } else if (view.name === 'agendaWeek' || view.name === 'agendaDay') {
+                    element.find('div.fc-title').html(element.find('div.fc-title').text());
+                }
+            }
+        });
+        $('.fc-center').hide();
+
+    };
+
+    pagefunction();
+
+</script>

@@ -1,0 +1,92 @@
+﻿@model IEnumerable<pso.cdd.model.cab_ts>
+
+@{
+    ViewBag.Title = "estados";
+}
+
+<style>
+    .colorbox0 {
+    background: #fbf7f7;
+    border-color: #c79121;
+   
+    }
+    .colorbox1 {
+    background: rgba(199, 145, 33, 0.08);
+    border-color: #c79121;
+   
+    }
+      .colorbox2 {
+    background: #e5f3ff;
+    border-color: #c79121;
+ 
+    }
+        .colorbox3 {
+    background: #e1f9e2;
+    border-color: #c79121;
+   
+    }
+</style>
+
+      <fieldset>
+        <table id="dt_basic" class="table table-striped table-bordered table-hover table-responsive placeholder" width="100%" role="grid" aria-describedby="datatable_col_reorder_info" style="width: 100%;">
+            <caption> Estados de procesos</caption>
+            <thead>
+                <tr>
+                    <th> @Html.DisplayNameFor(model => model.fecha)</th>
+                    <th data-hide="phone,tablet"> @Html.DisplayNameFor(model => model.fecha_mod)</th>
+                    <th> @Html.DisplayNameFor(model => model.categorias.nom_cat)</th>
+                    <th data-class="expand"> @Html.DisplayNameFor(model => model.empresas.nom_emp)</th>
+                    <th data-hide="phone,tablet"> @Html.DisplayNameFor(model => model.tipos_servicios.nom_tser)</th>
+                    <th data-hide="phone,tablet"> @Html.DisplayNameFor(model => model.usuarios.Nom_usu)</th>
+                    <th data-hide="phone,tablet"> @Html.DisplayNameFor(model => model.usuarios.unidades.nom_unidad)</th>
+                    <th class="colorbox1" data-hide="phone,tablet"> Ingresado</th>
+                    <th class="colorbox1" data-hide="phone,tablet"> Supervisor</th>
+                    <th class="colorbox2" data-hide="phone,tablet"> Gerente</th>
+                    <th class="colorbox3" data-hide="phone,tablet"> Traducción</th>
+                </tr>
+                </thead>
+            <tbody>
+               @{int i = 0;}
+            @foreach (var item in Model)
+            {
+                    <tr>
+                        <td> @Html.DisplayFor(modelItem => item.fecha)</td>
+                        <td> @Html.DisplayFor(modelItem => item.fecha_mod)</td>
+                        <td> @Html.DisplayFor(modelItem => item.categorias.nom_cat)</td>
+                        <td> @Html.DisplayFor(modelItem => item.empresas.nom_emp)</td>
+                        <td> @Html.DisplayFor(modelItem => item.tipos_servicios.nom_tser)</td>
+                        <td> @Html.DisplayFor(modelItem => item.usuarios.Nom_usu)</td>
+                        <td> @Html.DisplayFor(modelItem => item.usuarios.unidades.nom_unidad)</td>
+                        <td class="colorbox0">
+                            <div class="col col-3">
+                                <i class="@(item.estado=="ANALI"? "glyphicon glyphicon-ok":"No es revi2 - revi3 - revi1")"></i>
+                            </div>
+                        </td>
+                        <td class="colorbox1">             
+                           <div class="col col-3">
+                               <i class="@(item.estado=="REVI1"? "glyphicon glyphicon-ok":"No es revi2 - revi3")"></i>
+                           </div>               
+                        </td>
+                        <td class="colorbox2">
+                            <div class="col col-3">
+                                <i class="@(item.estado=="REVI2"? "glyphicon glyphicon-ok":"No es revi1 - revi3")"></i>
+                            </div>
+                        </td>
+                        <td class="colorbox3">
+                            <div class="col col-3">
+                                <i class="@(item.estado=="REVI3"? "glyphicon glyphicon-ok":"No es revi2 - revi1")"></i>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+              
+                </table>
+    </fieldset>
+  
+<script type="text/javascript">
+    pageSetUp();
+    InicializaGrillaFiltro("dt_basic");
+    activaModal();
+
+</script>

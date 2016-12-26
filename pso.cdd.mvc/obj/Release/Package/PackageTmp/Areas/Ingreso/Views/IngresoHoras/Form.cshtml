@@ -1,0 +1,324 @@
+﻿@model pso.cdd.model.cab_ts
+<style type='text/css'>
+    label.error {color: red;}
+    .error {color: #f0ad4e;}
+    .formcolor {background-color:#f5f5f5;}
+    hr {background-color: #dcdcdb; height: 1.5px; border: 0; color: #f5f5f5;}
+    #cabecera_tab1, #cabecera_tab2 {color: black !important;}
+    .select-editable select { position:absolute; top:0px; left:0px;  border:none; width:100%; margin:0; height:32px;}
+    .select-editable input { position:relative; top:0px; left:0px;   border:solid; border-width: 1px 1px 1px 1px; width:calc(100% - 35px); height:32px; padding-left: 5px;}
+    .select-editable select:focus, .select-editable input:focus { outline:none; }
+</style>
+<div class="jarviswidget jarviswidget-color-orange  jarviswidget-sortable form-horizontal" data-widget-editbutton="false" data-widget-custombutton="false" role="widget" style="position: relative; opacity: 1; left: 0px; top: 0px;">
+
+    <header role="heading">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            &times;
+        </button>
+        <h2 class="modal-title" id="myModalLabel">@(Model == null ? "Nuevo" : "Editar") Ingreso Horas</h2>
+    </header>
+
+    <div role="content" style="padding:0px;">
+        @using (Html.BeginForm((Model == null ? "Create" : "Edit"), "IngresoHoras", FormMethod.Post, new { @id = "mant-form", @class = "smart-form", @novalidate = "novalidate" }))
+            {
+            <fieldset>
+                @Html.AntiForgeryToken()
+                @*@Html.HiddenFor(model => model.ts_id)*@
+                @(Model == null ? new MvcHtmlString("") : Html.HiddenFor(model => model.ts_id))
+
+                <ul id="myTab1" class="nav nav-tabs bordered cabecera_tab">
+                    <li class="active"><a href="#s1" data-toggle="tab" aria-expanded="false" id="cabecera_tab1">Ingreso Horas @*@Html.Raw((string)ViewBag.tipo == "SR" ? "Serv. Recurrentes" : "Serv. No Recurrentes")*@</a></li>
+                    <li class=""><a href="#s2" data-toggle="tab" aria-expanded="true" id="cabecera_tab2">Servicios Grupales</a></li>
+                </ul>
+
+                <div id="myTabContent1" class="tab-content formcolor" style="padding:20px;">
+                    <div class="tab-pane fade active in" id="s1">
+
+                        <div class="form-group">
+                            <label class="label col-lg-6">Tipo de Servicio</label>
+                            <label class="select col-lg-6">
+                                <i class="icon-append fa fa-cog"></i>
+                                @Html.DropDownListFor(model => model.id_tser, (SelectList)ViewBag.id_tser_list, "Seleccione...")
+                            </label>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label class="label col-lg-6">Cliente</label>
+                            <label class="select col-lg-6">
+                                <i class="icon-append fa fa-cog"></i>
+                                @Html.DropDownListFor(model => model.id_emp, (SelectList)ViewBag.id_emp_list, "Seleccione...", new { @class = "emp_tags",  style = "width: 100%;" })
+                            </label>
+                        </div>
+                        <hr>
+                        <div class="form-group" id="Div_Categoria">
+                            <label class="label col-lg-6">Categoria</label>
+                            <label class="select col-lg-6">
+                                <i class="icon-append fa fa-cog "></i>
+                                @Html.DropDownListFor(model => model.id_cat, (SelectList)ViewBag.id_cat_list, "Seleccione...")
+                            </label>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label class="label col-lg-6">Fecha Servicio</label>
+                            <label class="input col-lg-6">
+                                @Html.TextBoxFor(model => model.fecha, new { type = "text", disabled = "true", @class = "msk _fecha" })
+                                <i class="icon-append glyphicon glyphicon-calendar"></i>
+                            </label>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label class="label col-lg-6" >HH:MM</label>
+                            <label class="input-group col-lg-6  select-editable">
+                                <i class="icon-append fa fa-cog "></i>
+                                <select onchange="this.nextElementSibling.value=this.value" id="data-horas_1">
+                                </select>
+                                @{
+                                    string horas; try { horas = ((int)(Model.horas / 60)).ToString() + ":" + ((int)(Model.horas % 60)).ToString(); } catch (Exception e) { horas = ""; }
+                                }
+                                @Html.TextBoxFor(model => horas, new { type = "text", @class = "_horas msk" }) 
+                                @*<input type="text" name="horas_1" id="horas_1" class="_horas msk"/>*@
+                            </label>
+                        </div>
+                        <hr>
+                        <div class="form-group" id="Div_Glosa">
+
+                            <label class="label">Descripción Español</label>
+                            <!-- end widget edit box -->
+                            <!-- widget content -->
+                            <div class="widget-body">
+                                @Html.TextAreaFor(model => model.descr_esp, new { maxlength = "250", @class = "custom-scroll ",placeholder="Ingrese Comentarios", style = "height:70px; width: 100%;" })
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade " id="s2">
+                        <p>
+                            <div class="form-group">
+                                <section>
+                                    <label class="label">Agregar Usuarios al Grupo</label>
+                                    <label class="select">
+                                        <i class="icon-append fa fa-cog"></i>
+                                        @Html.DropDownList("usuarios_grupales", (MultiSelectList)ViewBag.id_usuarios_list, "Seleccione...", new { @class = "usuarios_tags", multiple = "multiple", style = "width: 100%;" })
+                                    </label>
+                                </section>
+                            </div>
+                        </p>
+                    </div>       
+                </div>
+            </fieldset>
+            <footer>
+             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+             <button type="button" class="btn btn-warning" action="save">Grabar Registro</button>
+            </footer>
+        }
+    </div>
+</div>
+<script>
+    pageSetUp();
+    setFormulario(
+        "mant-form",
+        {
+            valor: { required: true },
+            id_tser: { required: true },
+            id_emp: { required: true },
+            id_cat: { required: true },
+            fecha: {
+                required: true,
+                'date_dd-mm-yyyy': true
+            }
+            ,
+            horas: {
+                required: true,
+                hh_mm: true
+            },
+            descr_esp:{required: true}
+        },
+        {
+            valor: { required: '<span class="help-block error" ><i class="fa fa-warning"></i> Ingrese valor valido</span> ' },
+            id_tser: { required: '<span class="help-block error" ><i class="fa fa-warning"></i> Ingrese Tipo de Servicio</span> ' },
+            id_emp: { required: '<span class="help-block error" ><i class="fa fa-warning"></i> Ingrese Cliente</span> ' },
+            id_cat: { required: '<span class="help-block error" ><i class="fa fa-warning"></i> Ingrese Categoria</span> ' },
+            fecha: {
+                required: '<span class="help-block error" ><i class="fa fa-warning"></i> Ingrese una fecha valida</span> ',
+                'date_dd-mm-yyyy': '<span class="help-block error" ><i class="fa fa-warning"></i> Ingrese una fecha de formato valido</span>'
+            },
+            horas: {
+                required: '<span class="help-block error" ><i class="fa fa-warning"></i> Ingrese hora valida</span> ',
+                hh_mm: '<span class="help-block error" ><i class="fa fa-warning"></i> Ingrese hora valida</span> '
+            },
+            descr_esp: { required: '<span class="help-block error" ><i class="fa fa-warning"></i> Ingrese Descripción</span> ' }
+        }
+    );
+
+    $("#id_emp").select2({ dropdownParent: $("#remoteModal") });
+    
+    $(".usuarios_tags").select2({
+        dropdownParent: $("#remoteModal"),
+        templateResult: formatState
+    });
+
+    $('#fecha').datepicker({
+        dateFormat: 'dd-mm-yy',
+        prevText: '<i class="fa fa-chevron-left"></i>',
+        nextText: '<i class="fa fa-chevron-right"></i>'
+    });
+
+
+    loadHours();
+    
+
+            
+
+    //Listener
+    $("#id_emp").change(function () { changeEmpTSer(); });
+    $("#id_tser").change(function () { changeTSer(); });
+
+
+
+    if ('@(Model == null ? "Nuevo" : "Editar")' == 'Editar') {
+        $(".usuarios_tags").prop('disabled', true);
+        $('#fecha').datepicker('option', 'minDate', new Date('@Html.Raw(ViewBag.fecha_ini_per)'));
+        $('#fecha').datepicker('option', 'maxDate', new Date('@Html.Raw(ViewBag.fecha_fin_per)'));
+        $('#fecha').prop("disabled", false);
+        $("#id_emp").prop("disabled", true);
+        $("#id_cat").prop("disabled", true);
+        $("#id_tser").prop("disabled", true);
+    } else {
+        $(".usuarios_tags").prop('disabled', false);
+        $('#fecha').prop("disabled", false);
+    }
+
+
+
+
+
+    function changeEmpTSer() {
+        $("#id_cat").empty();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetCategoria", "IngresoHoras")',
+            dataType: 'json',
+            data: {
+                id_emp: $("#id_emp").val(),
+                id_unidad: -1,
+                tser: $("#id_tser").val()
+
+            },
+            success: function (result) {
+                if (result.length == 0) {
+                    $("#id_cat").append('<option value="">Seleccione...</option>');
+                }
+                else {
+                    $("#id_cat").append('<option value="">Seleccione...</option>');
+                    $.each(result, function (i, item) {
+                        if (item.Value != null) {
+                            $("#id_cat").append('<option value="' + item.Value + '">' +
+                            item.Text + '</option>');
+                        }
+                    });
+                }
+            },
+            error: function (ex) {
+                alert('Failed to retrieve states.' + ex);
+            }
+        });
+    }
+
+    function changeTSer() {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetFechasPorPeriodoVigente", "IngresoHoras")',
+            dataType: 'json',
+            data: {
+                tser: $("#id_tser").val()
+            },
+            success: function (result) {
+                if (result.length != 0) {
+                    $.each(result, function (i, item) {
+                        if (item != null && i == 0) {
+                            $('#fecha').datepicker('option', 'minDate', new Date('' + item))
+                            $('#fecha').attr('data-val-dateIni',item)
+                        }
+                        if (item != null && i == 1) {
+                            $('#fecha').datepicker('option', 'maxDate', new Date('' + item))
+                            $('#fecha').attr('data-val-dateFin',item)
+                        }
+                        $('#fecha').prop("disabled", false);
+                        $("#id_emp").prop("disabled", false);
+                        $("#id_cat").prop("disabled", false);
+                        $("#horas").prop("disabled", false);
+                        $("#descr_esp").prop("disabled", false);
+                        $("#usuarios_grupales").prop("disabled", false);
+
+                        if ($("#id_tser").val() == 3) {
+                            $("#Div_Categoria").show();
+                            $("#Div_Glosa").hide();
+                            $("#id_emp").select2({ dropdownParent: $("#remoteModal") }).val("84")
+                            $("#id_emp").attr('disabled', true);
+                        } else if ($("#id_tser").val() == 1 && '@ViewBag.usu_id_unidad' != 60) {
+                            $("#id_emp").select2({ dropdownParent: $("#remoteModal") }).val("");
+                            $("#id_emp").removeAttr('disabled');
+                            $("#Div_Glosa").hide();
+                        } else if ($("#id_tser").val() == 1) {
+                            $("#id_emp").select2({ dropdownParent: $("#remoteModal") }).val("");
+                            $("#id_emp").removeAttr('disabled');
+                            $("#Div_Glosa").hide();
+                        } else {
+                            $("#id_emp").select2({ dropdownParent: $("#remoteModal") }).val("");
+                            $("#id_emp").removeAttr('disabled');
+                            $("#Div_Glosa").show();
+                            $("#Div_Categoria").show();
+                        }
+                    });
+
+                } else {
+                    $('#fecha').prop("disabled", true);
+                    $('#fecha').val("");
+                    $('#fecha').datepicker('option', 'minDate', "")
+                    $('#fecha').datepicker('option', 'maxDate', "")
+                    mensajeError("No existen periodos vigentes.", "")
+                    $('#id_emp').prop("disabled", true);
+                    $('#id_cat').prop("disabled", true);
+                    $('#horas').prop("disabled", true);
+                    $('#descr_esp').prop("disabled", true);
+                    $('#usuarios_grupales').prop("disabled", true);
+                }
+            },
+            error: function (ex) {
+                $('#fecha').prop("disabled", true);
+                $('#fecha').val("");
+                $('#fecha').datepicker('option', 'minDate', "")
+                $('#fecha').datepicker('option', 'maxDate', "")
+                $('#id_emp').prop("disabled", true);
+                $('#id_cat').prop("disabled", true);
+                $('#horas').prop("disabled", true);
+                $('#descr_esp').prop("disabled", true);
+                mensajeError("No existen periodos vigentes.", "")
+            },
+            complete: function () {
+                changeEmpTSer();
+            }
+        });
+        return false;
+    }
+
+
+    function loadHours (){
+        for (var i = 0; i <= 23; i++) { 
+            for (var x = 0; x <= 59; x=x+5) { 
+                if(!(i == 0 && x == 0)){
+                    $('#data-horas_1').append('<option value="'+i.padLeft()+':'+x.padLeft()+'">'+i.padLeft()+':'+x.padLeft()+'</option>');
+                }
+            }
+        }
+    }
+
+    function formatState (state) {
+        if (!state.id) { return state.text; }
+        var $state = $(
+          '<span><img src="img/avatars/male.png" class="img-flag" /> ' + state.text + '</span>'
+        );
+        return $state;
+    }
+</script>

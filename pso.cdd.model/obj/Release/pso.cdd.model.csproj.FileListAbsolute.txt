@@ -1,0 +1,10 @@
+C:\Users\dbarrera\Source\Repos\Solucion-PSO\pso.cdd.model\bin\Release\pso.cdd.model.dll.config
+C:\Users\dbarrera\Source\Repos\Solucion-PSO\pso.cdd.model\bin\Release\pso.cdd.model.dll
+C:\Users\dbarrera\Source\Repos\Solucion-PSO\pso.cdd.model\bin\Release\pso.cdd.model.pdb
+C:\Users\dbarrera\Source\Repos\Solucion-PSO\pso.cdd.model\bin\Release\EntityFramework.dll
+C:\Users\dbarrera\Source\Repos\Solucion-PSO\pso.cdd.model\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\dbarrera\Source\Repos\Solucion-PSO\pso.cdd.model\bin\Release\EntityFramework.xml
+C:\Users\dbarrera\Source\Repos\Solucion-PSO\pso.cdd.model\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\dbarrera\Source\Repos\Solucion-PSO\pso.cdd.model\obj\Release\pso.cdd.model.dll
+C:\Users\dbarrera\Source\Repos\Solucion-PSO\pso.cdd.model\obj\Release\pso.cdd.model.pdb
+C:\Users\dbarrera\Source\Repos\Solucion-PSO\pso.cdd.model\obj\Release\pso.cdd.model.csprojResolveAssemblyReference.cache

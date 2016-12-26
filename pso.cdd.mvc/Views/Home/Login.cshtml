@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="en-us" id="extr-page">
+<head>
+    <meta charset="utf-8">
+    <title>Pso | Acceso Usuarios</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- #CSS Links -->
+    <!-- Basic Styles -->
+    <link rel="stylesheet" type="text/css" media="screen" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/css/font-awesome.min.css">
+
+    <!-- SmartAdmin Styles : Caution! DO NOT change the order -->
+    <link rel="stylesheet" type="text/css" media="screen" href="~/css/smartadmin-production.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/css/smartadmin-skins.min.css">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="~/css/your_style.css">
+    <!-- #FAVICONS -->
+    <link rel="shortcut icon" href="~/img/favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="~/img/favicon/favicon.ico" type="image/x-icon">
+
+    <!-- #GOOGLE FONT -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+</head>
+
+<body class="animated fadeInDown">
+
+    <div id="main" role="main">
+        <!-- MAIN CONTENT -->
+        <div id="content" class="container-fluid"> <!--contenedor de anchura variable-->
+            <div class="row">
+               <!-- <h1 style="text-align: center;">@Html.AppData().Title</h1>-->
+                <br /><br /><br />
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-sm-6 col-md-5 col-center">  <!---Medidas login responsive-->
+                    <div class="well no-padding">
+                        @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "smart-form client-form" })) {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            <header>
+                                Accede a nuestro sistema:
+                            </header>
+                            <fieldset>
+                                <!--LOGO LOGIN-->
+                                <section>
+                                    <p style="text-align:center;"><img src="~/img/logotsvector.png" class="img-responsive" alt="ts"></p>
+                                    <label class="label">Nombre de Usuario</label>
+                                    <label class="input">
+                                        <i class="icon-append fa fa-user"></i>
+                                        @Html.TextBox("nom_cor_usu", string.Empty, new { MaxLength = "10" })
+                                        @Html.ValidationMessage("rut")
+                                        <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Ingrese su rut como nombre de usuario</b>
+                                    </label>
+                                </section>
+
+                                <section>
+                                    <label class="label">Contraseña</label>
+                                    <label class="input">
+                                        <i class="icon-append fa fa-lock"></i>
+                                        @Html.Password("pass_usu", string.Empty, new { MaxLength = "15" })
+                                        @Html.ValidationMessage("password")
+                                        <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Ingrese su contraseña</b>
+                                    </label> 
+                                </section>
+                            </fieldset>
+                            <footer>
+                                <button type="submit" class="btn btn-danger">
+                                    Ingresar
+                                </button>
+
+                                <br />
+                                <div>
+                                    <p style="text-align: right;"><img src="~/img/logo.pequeño.png" class="img-responsive" alt="Pso"></p>
+                                </div> 
+                            </footer>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--================================================== -->
+    <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+    <script src="~/js/libs/jquery-2.1.1.min.js"></script>
+
+    <!--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script> if (!window.jQuery.ui) { document.write('<script src="js/libs/jquery-ui-1.10.3.min.js"><\/script>');} </script>-->
+    <!-- IMPORTANT: APP CONFIG -->
+    <script src="~/js/app.config.seed.js"></script>
+
+    <!-- JS TOUCH : include this plugin for mobile drag / drop touch events
+    <script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> -->
+    <!-- BOOTSTRAP JS -->
+    <script src="~/js/bootstrap/bootstrap.min.js"></script>
+
+    <!--[if IE 8]>
+
+        <h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+
+    <![endif]-->
+    <!-- MAIN APP JS FILE -->
+    <script src="~/js/app.seed.js"></script>
+    <script type="text/javascript">
+
+        pageSetUp();
+        runAllForms();
+    </script>
+</body>
+</html>

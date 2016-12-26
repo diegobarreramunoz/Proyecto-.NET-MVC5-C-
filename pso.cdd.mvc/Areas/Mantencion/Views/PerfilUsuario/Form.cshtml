@@ -1,0 +1,79 @@
+﻿@model pso.cdd.model.perfil_usuario
+
+<style type='text/css'>
+    label.error {
+        color: red;
+    }
+</style>
+<!-----------------------------------------------Boton Ingresar Nuevo-------------------------------------------------------->
+<div class="jarviswidget jarviswidget-color-orange  jarviswidget-sortable" id="" data-widget-editbutton="false" data-widget-custombutton="false" role="widget" style="position: relative; opacity: 1; left: 0px; top: 0px;">
+    <header role="heading">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            <span class="widget-icon"> <i class="fa fa-times"></i></span>
+        </button>
+        <span class="widget-icon"> <i class="fa fa-edit"></i></span>
+        <h2 id="myModalLabel">@(Model == null ? "Formulario Perfiles" : "Editar") </h2>
+    </header>
+
+    <div role="content">
+        @using (Html.BeginForm((Model == null ? "Create" : "Edit"), "PerfilUsuario", FormMethod.Post, new { @id = "mant-form", @class = "smart-form", @novalidate = "novalidate" }))
+        {
+            @Html.AntiForgeryToken()
+            @(Model == null ? new MvcHtmlString("") : Html.HiddenFor(model => model.id))
+            @*@Html.HiddenFor(model => model)*@
+
+        <!-- contenido widget-->
+            <div class="widget-body no-padding">
+                <form id="smart-form-register" class="smart-form" novalidate="novalidate">
+                    <header>
+                        <h2 class="table table-striped  table-hover">Nuevo Perfil</h2>
+                    </header>
+
+                    <fieldset>
+                        <section>
+                            <label class="label">Usuario</label>
+                            <label class="select">
+                                <i class="icon-append fa fa-cog"></i>
+                                @Html.DropDownListFor(model => model.id_usuario, null, "Seleccione...")
+                            </label>
+                        </section>
+                        <section>
+                            <label class="label">Perfil</label>
+                            <label class="select">
+                                <i class="icon-append fa fa-cog"></i>
+                                @Html.DropDownListFor(model => model.perfil, null, "Seleccione...")
+                            </label>
+                        </section>
+                    </fieldset>
+
+                    <footer>
+                        <div>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Cancelar
+                            </button>
+                            <button type="button" class="btn btn-warning" action="save">
+                                Grabar Registro
+                            </button>
+                        </div>
+                    </footer>
+                </form>
+            </div>
+        }
+    </div>
+</div>
+
+    <script>
+        pageSetUp();
+        setFormulario(
+            "mant-form",
+            {
+                id_usuario: { required: true },
+                perfil: { required: true }
+            },
+            {
+                id_usuario: { required: 'Seleccione un Usuario Valido' },
+                perfil: { required: 'Seleccione un Perfil Valido' }
+            }
+        );
+
+    </script>

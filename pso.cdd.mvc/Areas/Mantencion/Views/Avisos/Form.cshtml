@@ -1,0 +1,157 @@
+﻿
+@model pso.cdd.model.avisos
+<style type='text/css'>
+    label.error {  color: red;  }
+</style>
+<div class="jarviswidget jarviswidget-color-orange  jarviswidget-sortable" id="" data-widget-editbutton="false" data-widget-custombutton="false" role="widget" style="position: relative; opacity: 1; left: 0px; top: 0px;">
+    <header role="heading">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            <span class="widget-icon"> <i class="fa fa-times"></i></span>
+        </button>
+        <span class="widget-icon"> <i class="fa fa-edit"></i></span>
+        <h2 id="myModalLabel">@(Model == null ? "Formulario de Ingreso Agenda" : "Editar") </h2>
+    </header>
+
+    <!-- widget div-->
+    <div role="content">
+        @using (Html.BeginForm((Model == null ? "Create" : "Edit"), "Avisos", FormMethod.Post, new { @id = "mant-form", @class = "smart-form", @novalidate = "novalidate" }))
+        {
+            @Html.AntiForgeryToken()
+            @(Model == null ? new MvcHtmlString("") : Html.HiddenFor(model => model.id_aviso))
+
+
+
+        <!-- contenido widget-->
+            <div class="widget-body no-padding">
+                <form id="smart-form-register" class="smart-form" novalidate="novalidate">
+                    <header>
+                        <h2 class="table table-striped  table-hover">Ingreso Nuevo</h2>
+                    </header>
+
+                    <fieldset>
+                        <section>
+                            <label class="textarea textarea-resizable">
+                                <i class="icon-append fa fa-comment"></i>
+                                @Html.TextAreaFor(model => model.msg, new { @class = "custom-scroll", placeholder = "Ingrese Mensaje", rows = "2" })
+                                <b class="tooltip tooltip-bottom-right">Ingrese su Mensaje</b>
+                            </label>
+                        </section>
+
+                        @*<!---------------------Selección color del evento------------------------->*@
+
+
+                       <div class="form-group">
+                            <label>Seleccione Color del evento</label>
+                            <div class="btn-group btn-group-justified btn-select-tick" id="tipo_aviso" data-toggle="buttons">
+                                <label class="btn bg-color-darken active">
+                                    @Html.RadioButton("tipo_aviso", "btn bg-color-darken", new { @class = "btn bg-color-darken", @checked=true })<i class="fa fa-check txt-color-white"></i>
+                                </label>
+                               <label class="btn bg-color-blue">
+                                    @Html.RadioButton("tipo_aviso", "btn bg-color-blue", new { @class = "btn bg-color-blue" }) <i class="fa fa-check txt-color-white"></i>
+                                </label>
+                                <label class="btn bg-color-orange">
+                                    @Html.RadioButton("tipo_aviso","btn bg-color-orange", new { @class = "btn bg-color-orange" }) <i class="fa fa-check txt-color-white"></i>
+                                </label>
+                                <label class="btn bg-color-greenLight">
+                                    @Html.RadioButton("tipo_aviso", "btn bg-color-greenLight", new { @class = "btn bg-color-greenLight" }) <i class="fa fa-check txt-color-white"></i>
+                                </label>
+                                <label class="btn bg-color-blueLight">
+                                    @Html.RadioButton("tipo_aviso", "btn bg-color-blueLight", new { @class = "btn bg-color-greenLight" }) <i class="fa fa-check txt-color-white"></i>
+                                </label>
+                                <label class="btn bg-color-red">
+                                    @Html.RadioButton("tipo_aviso", "btn bg-color-red", new { @class = "btn bg-color-red" }) <i class="fa fa-check txt-color-white"></i>
+                                </label>
+                            </div>
+                        </div>
+                  
+                    </fieldset>
+
+                    <fieldset>
+                        <div class="row">
+                            <section class="col col-6">
+                                <label class="input">
+                                    <i class="icon-append fa fa-calendar"></i>
+                                    @Html.TextBoxFor(model => model.fecha_ini, new { @class = "msk _fecha" })
+                                </label>
+                            </section>
+                            <section class="col col-6">
+                                <label class="input">
+                                    <i class="icon-append fa fa-calendar"></i>
+                                    @Html.TextBoxFor(model => model.fecha_fin, new { @class = "msk _fecha" })
+                                </label>
+                            </section>
+                        </div>
+                    </fieldset>
+
+                    <footer>
+                        <div class="">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Cancelar
+                            </button>
+                            <button type="button" class="btn btn-warning" action="save">
+                                Grabar Registro
+                            </button>
+                        </div>
+                    </footer>
+                </form>
+            </div>
+        }  
+    </div>
+    <!-- Scriptsss -->
+
+    <script>
+              pageSetUp();
+              setFormulario(
+                  "mant-form",
+                   {
+
+                       msg: { required: true },
+                       tipo_aviso: { required: true },
+                       fecha_ini: {
+                           required: true,
+                           'date_dd-mm-yyyy': true
+                       },
+                       fecha_fin: {
+                           required: true,
+                           'date_dd-mm-yyyy': true
+                       }
+                   },
+        {
+
+            msg: { required: 'Ingrese Mensaje' },
+            tipo_aviso: { required: 'Ingrese Tipo Aviso' },
+            fecha_ini: {
+                required: 'Ingrese Fecha Inicio',
+                'date_dd-mm-yyyy': 'Ingrese Fecha Valida'
+            },
+            fecha_fin: {
+                required: 'Ingrese Fecha Fin',
+                'date_dd-mm-yyyy': 'Ingrese Fecha Valida'
+            },
+
+
+        }    );
+    </script>
+
+    <script>
+
+              // DATE PICKER FECHA INICIO FECHA FIN
+              $('#fecha_ini').datepicker({
+                  dateFormat: 'dd-mm-yy',
+                  prevText: '<i class="fa fa-chevron-left"></i>',
+                  nextText: '<i class="fa fa-chevron-right"></i>',
+                  onSelect: function (selectedDate) {
+                      $('#fecha_fin').datepicker('option', 'minDate', selectedDate);
+                  }
+              });
+
+              $('#fecha_fin').datepicker({
+                  dateFormat: 'dd-mm-yy',
+                  prevText: '<i class="fa fa-chevron-left"></i>',
+                  nextText: '<i class="fa fa-chevron-right"></i>',
+                  onSelect: function (selectedDate) {
+                      $('#fecha_ini').datepicker('option', 'maxDate', selectedDate);
+                  }
+              });
+    </script>
+</div>
